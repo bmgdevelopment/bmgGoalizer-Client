@@ -1,0 +1,226 @@
+{
+    "goalizerUsers": [{
+        "id": 1,
+        "userId": 2,
+        "username": "ashorie0",
+        "profilePic": "http://dummyimage.com/100x100.png/cc0000/ffffff"
+      }, {
+        "id": 2,
+        "userId": 1,
+        "username": "splowman1",
+        "profilePic": "http://dummyimage.com/100x100.png/cc0000/ffffff"
+      }, {
+        "id": 3,
+        "userId": 4,
+        "username": "dskamal2",
+        "profilePic": "http://dummyimage.com/100x100.png/dddddd/000000"
+      }, {
+        "id": 4,
+        "userId": 3,
+        "username": "mworsley3",
+        "profilePic": "http://dummyimage.com/100x100.png/5fa2dd/ffffff"
+      }],
+    "folders" : [{
+        "id": 1,
+        "name": "Personal Goals",
+        "goalizer_userId": 1,
+        "color": "#7b2bd6"
+      }, {
+        "id": 2,
+        "name": "Fun Goals",
+        "goalizer_userId": 3,
+        "color": "#fd2e77"
+      }, {
+        "id": 3,
+        "name": "Travel Goals",
+        "goalizer_userId": 2,
+        "color": "#c45d0e"
+      }, {
+        "id": 4,
+        "name": "Personal Goals",
+        "goalizer_userId": 3,
+        "color": "#ad26ff"
+      }, {
+        "id": 5,
+        "name": "Fun Goals",
+        "goalizer_userId": 2,
+        "color": "#918f96"
+      }, {
+        "id": 6,
+        "name": "Travel Goals",
+        "goalizer_userId": 1,
+        "color": "#68ea8c"
+      }, {
+        "id": 7,
+        "name": "Business Goals",
+        "goalizer_userId": 3,
+        "color": "#16c72c"
+      }, {
+        "id": 8,
+        "name": "Finance Goals",
+        "goalizer_userId": 2,
+        "color": "#55a0ff"
+      }, {
+        "id": 9,
+        "name": "Health Goals",
+        "goalizer_userId": 1,
+        "color": "#6fda01"
+      }, {
+        "id": 10,
+        "name": "Health Goals",
+        "goalizer_userId": 3,
+        "color": "#3aa191"
+      }],
+    "goals": [{
+        "id": 1,
+        "title": "Title of Fun Goal Here!",
+        "description": "Gturpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc",
+        "datetime": "07/03/2021",
+        "folderId": 2,
+        "goalizer_userId": 3,
+        "isComplete": "True"
+      }, {
+        "id": 2,
+        "title": "Title of Fun Goal Here!",
+        "description": "nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et",
+        "datetime": "11/06/2021",
+        "folderId": 5,
+        "goalizer_userId": 2,
+        "isComplete": "False"
+      }, {
+        "id": 3,
+        "title": "Title of Personal Goal Here!",
+        "description": "odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque",
+        "datetime": "02/01/2022",
+        "folderId": 4,
+        "goalizer_userId": 3,
+        "isComplete": "False"
+      }, {
+        "id": 4,
+        "title": "Title of Finance Goal Here!",
+        "description": "convallis nunc proin at turpis a pede posuere nonummy integer non velit donec diam",
+        "datetime": "01/29/2021",
+        "folderId": 8,
+        "goalizer_userId": 2,
+        "isComplete": "False"
+      }, {
+        "id": 5,
+        "title": "Title of Health Goal Here!",
+        "description": "eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna",
+        "datetime": "01/18/2021",
+        "folderId": 10,
+        "goalizer_userId": 3,
+        "isComplete": "True"
+      }, {
+        "id": 6,
+        "title": "Title of Travel Goal Here!",
+        "description": "eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet",
+        "datetime": "08/15/2021",
+        "folderId": 3,
+        "goalizer_userId": 2,
+        "isComplete": "False"
+      }, {
+        "id": 7,
+        "title": "Title of Personal Goal Here!",
+        "description": "sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo",
+        "datetime": "06/30/2021",
+        "folderId": 1,
+        "goalizer_userId": 1,
+        "isComplete": "False"
+      }, {
+        "id": 8,
+        "title": "Title of Travel Goal Here!",
+        "description": "integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo",
+        "datetime": "06/17/2021",
+        "folderId": 6,
+        "goalizer_userId": 1,
+        "isComplete": "True"
+      }, {
+        "id": 9,
+        "title": "Title of Finance Goal Here!",
+        "description": "nisi volutpat eleifend donec ut dolor morbi vel lectus in quam",
+        "datetime": "12/10/2021",
+        "folderId": 8,
+        "goalizer_userId": 2,
+        "isComplete": "False"
+      }, {
+        "id": 10,
+        "title": "Title of Health Goal Here!",
+        "description": "pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede",
+        "datetime": "05/27/2021",
+        "folderId": 9,
+        "goalizer_userId": 1,
+        "isComplete": "True"
+      }],
+    "favorites": [{
+        "id": 1,
+        "goalId": 2
+      }, {
+        "id": 2,
+        "goalId": 5
+      }, {
+        "id": 3,
+        "goalId": 4
+      }, {
+        "id": 4,
+        "goalId": 8
+      }],
+    "goalTags": [{
+        "id": 1,
+        "goalId": 4,
+        "tagId": 3
+      }, {
+        "id": 2,
+        "goalId": 8,
+        "tagId": 2
+      }, {
+        "id": 3,
+        "goalId": 10,
+        "tagId": 5
+      }, {
+        "id": 4,
+        "goalId": 5,
+        "tagId": 5
+      }, {
+        "id": 5,
+        "goalId": 3,
+        "tagId": 1
+      }, {
+        "id": 6,
+        "goalId": 6,
+        "tagId": 3
+      }, {
+        "id": 7,
+        "goalId": 10,
+        "tagId": 1
+      }, {
+        "id": 8,
+        "goalId": 2,
+        "tagId": 1
+      }, {
+        "id": 9,
+        "goalId": 1,
+        "tagId": 1
+      }, {
+        "id": 10,
+        "goalId": 8,
+        "tagId": 3
+      }],
+    "tags": 
+    [{
+      "id": 1,
+      "tagname": "Personal"
+    }, {
+      "id": 2,
+      "tagname": "Social"
+    }, {
+      "id": 3,
+      "tagname": "Financial"
+    }, {
+      "id": 4,
+      "tagname": "Mental"
+    }, {
+      "id": 5,
+      "tagname": "Health"
+    }]
+}
