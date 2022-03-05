@@ -1,94 +1,75 @@
-import React, { useState } from "react"
-import { Link, useHistory } from "react-router-dom";
-import { Button, Divider, Form, Grid, Segment, Container } from 'semantic-ui-react'
-import "./Login.css"
-// import bmgBlue from '../images/bmgBlue.png'
+import React, { useRef } from "react"
+import { Link, useHistory } from "react-router-dom"
+import "./Auth.css"
 
-const apiURL = "http://localhost:7001"
 
 export const Login = () => {
-    const [loginUser, setLoginUser] = useState({ email: "" })
+    const email = useRef()
+    const password = useRef()
+    const invalidDialog = useRef()
     const history = useHistory()
-
-    const handleInputChange = (event) => {
-        const newUser = { ...loginUser }
-        newUser[event.target.id] = event.target.value
-        setLoginUser(newUser)
-    }
-
-    const existingUserCheck = () => {
-        return fetch(`${apiURL}/users?email=${loginUser.email}`)
-            .then(res => res.json())
-            .then(user => user.length ? user[0] : false) //user[0] sets the right match to the index 0
-    }
 
     const handleLogin = (e) => {
         e.preventDefault()
 
-        existingUserCheck()
-            .then(exists => {
-                if (exists) {
-                    // The user id is saved under the key trendago_user in sessionStorage. Change below if needed!
-                    sessionStorage.setItem("trendago_user", exists.id)
+        return fetch("http://127.0.0.1:8000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                username: email.current.value,
+                password: password.current.value
+            })
+        })
+            .then(res => res.json())
+            .then(res => {
+                if ("valid" in res && res.valid) {
+                    localStorage.setItem("goalizer_user_id", res.token )
                     history.push("/")
-                } else {
-                    window.alert("User does not exist, please register for access")
+                }
+                else {
+                    invalidDialog.current.showModal()
                 }
             })
     }
 
     return (
-        <>
-            <div className="login-body">
-                <main className="container--login">
+        <main className="container--login">
+            <dialog className="dialog dialog--auth" ref={invalidDialog}>
+                <div>Email or password was not valid.</div>
+                <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
+            </dialog>
 
-                    <section className="formSection">
-                        <h1 className="loginTitle">TRENDAGO</h1>
+            <section>
+                <form className="form--login" onSubmit={handleLogin}>
+                    <h1>Goalizer 🎯</h1>
+                    <h2>Please sign in</h2>
 
-                        <div className="reactLoginForm">
-                            <Segment placeholder style={{ minHeight: '0' }}>
-                                <Grid columns={2} relaxed='very' stackable>
-                                    <Grid.Column>
-                                        <Form>
-                                            <Form.Input
-                                                icon='user'
-                                                id="email"
-                                                className="form-control"
-                                                iconPosition='left'
-                                                label='Email Address'
-                                                placeholder='Email Address'
-                                                value={loginUser.email}
-                                                onChange={handleInputChange}
-                                            />
+                    <fieldset>
+                        <label htmlFor="inputEmail"> Email address </label>
+                        <input ref={email} type="email" id="email" className="form-control" defaultValue="me@me.com" placeholder="Email address" required autoFocus />
+                    </fieldset>
 
+                    <fieldset>
+                        <label htmlFor="inputPassword"> Password </label>
+                        <input ref={password} type="password" id="password" className="form-control" defaultValue="me" placeholder="Password" required />
+                    </fieldset>
 
-                                            <Button onClick={handleLogin} type="submit" className="login" content='Login' primary />
-                                        </Form>
-                                    </Grid.Column>
+                    <fieldset style={{
+                        textAlign:"center"
+                    }}>
+                        <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
+                    </fieldset>
 
-                                    <Grid.Column verticalAlign='middle'>
-                                        <Link to="/register" className="register">
-                                            <Button content='Register' icon='signup' size='big' />
-                                        </Link>
-                                    </Grid.Column>
-                                </Grid>
+                </form>
+            </section>
 
-                                <Divider vertical>Or</Divider>
-                            </Segment>
-
-                        </div>
-                    </section>
-                </main>
-
-                <div>
-                    <Segment inverted vertical style={{ margin: '0', background: 'transparent' }}>
-                        <Container textAlign='center' >
-                            <Link className="bmgRepoLink" to={{ pathname: "https://github.com/bmgdevelopment/bmg-frontEndCapstone" }} target="_blank">
-                                <img className="bmgLogo repoBMG" style={{ height: '100px' }} src={bmgBlue} alt="BMG Dev Logo" />
-                            </Link>
-                        </Container>
-                    </Segment>
-                </div>
-            </div>
-        </>)
+            <section className="link--register">
+                <Link to="/register">Not a member yet?</Link>
+            </section>
+            
+        </main>
+    )
 }
