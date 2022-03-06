@@ -23,135 +23,145 @@
     "folders" : [{
         "id": 1,
         "name": "Personal Goals",
-        "goalizer_userId": 1,
+        "creator": 1,
         "color": "#7b2bd6"
       }, {
         "id": 2,
         "name": "Fun Goals",
-        "goalizer_userId": 3,
+        "creator": 3,
         "color": "#fd2e77"
       }, {
         "id": 3,
         "name": "Travel Goals",
-        "goalizer_userId": 2,
+        "creator": 2,
         "color": "#c45d0e"
       }, {
         "id": 4,
         "name": "Personal Goals",
-        "goalizer_userId": 3,
+        "creator": 3,
         "color": "#ad26ff"
       }, {
         "id": 5,
         "name": "Fun Goals",
-        "goalizer_userId": 2,
+        "creator": 2,
         "color": "#918f96"
       }, {
         "id": 6,
         "name": "Travel Goals",
-        "goalizer_userId": 1,
+        "creator": 1,
         "color": "#68ea8c"
       }, {
         "id": 7,
         "name": "Business Goals",
-        "goalizer_userId": 3,
+        "creator": 3,
         "color": "#16c72c"
       }, {
         "id": 8,
         "name": "Finance Goals",
-        "goalizer_userId": 2,
+        "creator": 2,
         "color": "#55a0ff"
       }, {
         "id": 9,
         "name": "Health Goals",
-        "goalizer_userId": 1,
+        "creator": 1,
         "color": "#6fda01"
       }, {
         "id": 10,
         "name": "Health Goals",
-        "goalizer_userId": 3,
+        "creator": 3,
         "color": "#3aa191"
       }],
     "goals": [{
         "id": 1,
         "title": "Title of Fun Goal Here!",
         "description": "Gturpis adipiscing lorem vitae mattis nibh ligula nec sem duis aliquam convallis nunc",
-        "datetime": "07/03/2021",
-        "folderId": 2,
-        "goalizer_userId": 3,
-        "isComplete": "True"
-      }, {
+        "creation_date": "2021-08-27T13:24:27.172Z",
+        "folder": 2,
+        "creator": 3,
+        "is_complete": "true",
+        "goaltags": [1,2]
+        }, {
         "id": 2,
         "title": "Title of Fun Goal Here!",
         "description": "nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et",
-        "datetime": "11/06/2021",
-        "folderId": 5,
-        "goalizer_userId": 2,
-        "isComplete": "False"
-      }, {
+        "creation_date": "2021-08-27T13:24:27.172Z",
+        "folder": 5,
+        "creator": 2,
+        "is_complete": "false",
+        "goaltags": [1,2,5]  
+        }, {
         "id": 3,
         "title": "Title of Personal Goal Here!",
         "description": "odio in hac habitasse platea dictumst maecenas ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque",
-        "datetime": "02/01/2022",
-        "folderId": 4,
-        "goalizer_userId": 3,
-        "isComplete": "False"
-      }, {
+        "creation_date": "2021-08-27T13:24:27.172Z",
+        "folder": 4,
+        "creator": 3,
+        "is_complete": "false",
+        "goaltags": [1,3]  
+        }, {
         "id": 4,
         "title": "Title of Finance Goal Here!",
         "description": "convallis nunc proin at turpis a pede posuere nonummy integer non velit donec diam",
-        "datetime": "01/29/2021",
-        "folderId": 8,
-        "goalizer_userId": 2,
-        "isComplete": "False"
-      }, {
+        "creation_date": "2021-08-27T13:24:27.172Z",
+        "folder": 8,
+        "creator": 2,
+        "is_complete": "false",
+        "goaltags": [3]  
+        }, {
         "id": 5,
         "title": "Title of Health Goal Here!",
         "description": "eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna",
-        "datetime": "01/18/2021",
-        "folderId": 10,
-        "goalizer_userId": 3,
-        "isComplete": "True"
-      }, {
+        "creation_date": "2021-08-27T13:24:27.172Z",
+        "folder": 10,
+        "creator": 3,
+        "is_complete": "true",
+        "goaltags": [1,5]  
+        }, {
         "id": 6,
         "title": "Title of Travel Goal Here!",
         "description": "eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet",
-        "datetime": "08/15/2021",
-        "folderId": 3,
-        "goalizer_userId": 2,
-        "isComplete": "False"
-      }, {
+        "creation_date": "2021-08-27T13:24:27.172Z",
+        "folder": 3,
+        "creator": 2,
+        "is_complete": "false",
+        "goaltags": [1,2,3,4]  
+        }, {
         "id": 7,
         "title": "Title of Personal Goal Here!",
         "description": "sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo",
-        "datetime": "06/30/2021",
-        "folderId": 1,
-        "goalizer_userId": 1,
-        "isComplete": "False"
-      }, {
+        "creation_date": "2021-08-27T13:24:27.172Z",
+        "folder": 1,
+        "creator": 1,
+        "is_complete": "false",
+        "goaltags": [1,4]  
+        }, {
         "id": 8,
         "title": "Title of Travel Goal Here!",
         "description": "integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo",
-        "datetime": "06/17/2021",
-        "folderId": 6,
-        "goalizer_userId": 1,
-        "isComplete": "True"
-      }, {
+        "creation_date": "2021-08-27T13:24:27.172Z",
+        "folder": 6,
+        "creator": 1,
+        "is_complete": "true",
+        "goaltags": [1,2]  
+        }, {
         "id": 9,
         "title": "Title of Finance Goal Here!",
         "description": "nisi volutpat eleifend donec ut dolor morbi vel lectus in quam",
-        "datetime": "12/10/2021",
-        "folderId": 8,
-        "goalizer_userId": 2,
-        "isComplete": "False"
-      }, {
+        "creation_date": "2021-08-27T13:24:27.172Z",
+        "folder": 8,
+        "creator": 2,
+        "is_complete": "false",
+        "goaltags": [1,3,4]  
+        }, {
         "id": 10,
         "title": "Title of Health Goal Here!",
         "description": "pellentesque ultrices mattis odio donec vitae nisi nam ultrices libero non mattis pulvinar nulla pede",
-        "datetime": "05/27/2021",
-        "folderId": 9,
-        "goalizer_userId": 1,
-        "isComplete": "True"
-      }],
+        "creation_date": "2021-08-27T13:24:27.172Z",
+        "folder": 9,
+        "creator": 1,
+        "is_complete": "true",
+        "goaltags": [1,4,5]  
+        }],
     "favorites": [{
         "id": 1,
         "goalId": 2
@@ -165,62 +175,48 @@
         "id": 4,
         "goalId": 8
       }],
-    "goalTags": [{
-        "id": 1,
-        "goalId": 4,
-        "tagId": 3
-      }, {
-        "id": 2,
-        "goalId": 8,
-        "tagId": 2
-      }, {
-        "id": 3,
-        "goalId": 10,
-        "tagId": 5
-      }, {
-        "id": 4,
-        "goalId": 5,
-        "tagId": 5
-      }, {
-        "id": 5,
-        "goalId": 3,
-        "tagId": 1
-      }, {
-        "id": 6,
-        "goalId": 6,
-        "tagId": 3
-      }, {
-        "id": 7,
-        "goalId": 10,
-        "tagId": 1
-      }, {
-        "id": 8,
-        "goalId": 2,
-        "tagId": 1
-      }, {
-        "id": 9,
-        "goalId": 1,
-        "tagId": 1
-      }, {
-        "id": 10,
-        "goalId": 8,
-        "tagId": 3
-      }],
     "tags": 
     [{
       "id": 1,
-      "tagname": "Personal"
+      "label": "Personal"
     }, {
       "id": 2,
-      "tagname": "Social"
+      "label": "Social"
     }, {
       "id": 3,
-      "tagname": "Financial"
+      "label": "Financial"
     }, {
       "id": 4,
-      "tagname": "Mental"
+      "label": "Mental"
     }, {
       "id": 5,
-      "tagname": "Health"
-    }]
+      "label": "Health"
+    }],
+    "colors": [
+      {
+        "id": 1,
+        "hex": "#F13000",
+        "reference": "red"
+      },
+      {
+        "id": 2,
+        "hex": "#00F130",
+        "reference": "green"
+      },
+      {
+        "id": 3,
+        "hex": "#3000F1",
+        "reference": "blue"
+      },
+      {
+        "id": 4,
+        "hex": "#8218ED",
+        "reference": "purple"
+      },
+      {
+        "id": 5,
+        "hex": "#ED8218",
+        "reference": "orange"
+      }
+    ]
 }
