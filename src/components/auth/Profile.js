@@ -9,21 +9,6 @@ export const Profile = (props) => {
     getProfile();
   }, []);
 
-  /*
-.userListWrapper {
-    margin: -2em 6em;
-    border: 1px solid gray;
-    padding: 1em;
-}
-
-.allUserList {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 20px;
-}
-*/
-
   return (
     <>
       <article
@@ -56,8 +41,8 @@ export const Profile = (props) => {
           <div className="profile__username">
             Username: {profile.goalizeruser && profile.goalizeruser.user.username}
           </div>
-          <div className="profile__bio">
-            About you: {profile.goalizeruser && profile.goalizeruser.bio}
+          <div className="profile__profileImage">
+            Username: {profile.goalizeruser && profile.goalizeruser.profile_image_url}
           </div>
         </section>
 

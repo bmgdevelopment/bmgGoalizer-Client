@@ -19,8 +19,7 @@ export const Register = (props) => {
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
                 "email": email.current.value,
-                "password": password.current.value,
-                "bio": bio.current.value
+                "password": password.current.value
             }
 
             return fetch("http://127.0.0.1:8000/register", {
