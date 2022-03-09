@@ -72,6 +72,7 @@ export const Register = (props) => {
                     <label htmlFor="verifyPassword"> Verify Password </label>
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
                 </fieldset>
+                {/* NEED TO MAKE BELOW DEFAULT USER IMAGE SECTION */}
                 <fieldset>
                     <label htmlFor="bio"> Bio </label>
                     <input ref={bio} type="text" name="bio" className="form-control" placeholder="Bio" required />

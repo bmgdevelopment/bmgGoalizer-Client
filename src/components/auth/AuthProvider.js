@@ -15,14 +15,14 @@ export const ProfileProvider = (props) => {
       .then(setProfile);
   };
 
-  const updateProfileImage = () => {
+  const updateProfileImage = (goalizeruser) => {
     return fetch(`http://localhost:8000/myprofile/edit`, {
       method: "PUT",
       headers: {
         Authorization: `Token ${localStorage.getItem("goalizer_user_id")}`,
       },
-      body: JSON.stringify(goal),
-    }).then(getGoals);
+      body: JSON.stringify(goalizeruser.profile_image_url),
+    }).then(setProfile);
   };
 
   return (
