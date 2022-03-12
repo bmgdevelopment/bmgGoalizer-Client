@@ -3,10 +3,9 @@ import { useState } from "react";
 import { GoalizerHome } from "./GoalizerHome";
 import { FolderList } from "./folder/FolderList";
 import { FolderProvider } from "./folder/FolderProvider";
-// import { Route } from "react-router-dom";
-// import { GoalizerHome } from "./GoalizerHome"
-// import { UserProvider } from "./user/UserProvider"
-// import { UserList } from "./user/UserList"
+import { GoalProvider } from "./goal/GoalProvider";
+import { GoalList } from "./goal/GoalList";
+import { GoalView } from "./goal/GoalView"
 
 export const ApplicationView = () => {
   const [showHome, setShowHome] = useState(false);
@@ -14,6 +13,7 @@ export const ApplicationView = () => {
   return (
     <>
       <FolderProvider>
+      <GoalProvider>
         <main style={{ margin: "0px" }}>
           {/* <Route exact path="/">
           <GoalizerHome />
@@ -27,10 +27,15 @@ export const ApplicationView = () => {
             </div>
             <div id="column3" className="column3">
               <button onClick={() => setShowHome(!showHome)}>Toggle</button>
+              <GoalList />
             </div>
-            <div className="column4">{showHome && <GoalizerHome />}</div>
+            <div className="column4">
+              <GoalView />
+              {showHome && <GoalizerHome />}
+            </div>
           </div>
         </main>
+      </GoalProvider>
       </FolderProvider>
     </>
   );

@@ -4,7 +4,7 @@
     margin: 0;
     height: 100px;
     background-color: white;
-    border: 2px solid orange;
+    border: 2px solid white;
     position: fixed;
     z-index: 100;
     right: 0px;
@@ -21,16 +21,18 @@
     /* position:  */
     width: 250px;
     height: 685px;
-    border: 2px solid green;
+    display: flex;
+    border: 2px solid purple;
+    flex-direction: column;
 }
 
 .column1 {
     width: 100px;
-    border: 2px solid lightgray;
-    background-color: lightgray;
+    border: 2px solid lightblue;
+    background-color: lightblue;
 }
 
 .column4 {
-    background-color: lightgray;
+    background-color: lightblue;
     width: 810px;
 }

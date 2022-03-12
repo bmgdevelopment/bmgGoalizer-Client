@@ -26,7 +26,6 @@ export const FolderProvider = (props) => {
     })
     .then((res) => res.json())
     .then(setGoalsForFolder)
-    .then(console.log('Inside provider ', goalsForFolder))
   };
 
   const addFolder = (folder) => {

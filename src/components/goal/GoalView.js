@@ -1,9 +1,9 @@
-//Part Date, Part Name, maybe a few details, and complete/incomplete spot for icon
-import React from "react";
+import React, { useContext } from "react";
+import { GoalContext } from "./GoalProvider";
 
 
-export const GoalPreview = (props) => {
-    const { goal } = props;
+export const GoalView = () => {
+    const { goal } = useContext(GoalContext);
 
     return (
         <>
