@@ -1,0 +1,36 @@
+.topNav {
+    display: block;
+    width: 100vw;
+    margin: 0;
+    height: 100px;
+    background-color: white;
+    border: 2px solid orange;
+    position: fixed;
+    z-index: 100;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+}
+
+.containFourColumns {
+    display: flex;
+    margin-top: 103px;
+}
+
+.column2, .column3 {
+    /* position:  */
+    width: 250px;
+    height: 685px;
+    border: 2px solid green;
+}
+
+.column1 {
+    width: 100px;
+    border: 2px solid lightgray;
+    background-color: lightgray;
+}
+
+.column4 {
+    background-color: lightgray;
+    width: 810px;
+}
