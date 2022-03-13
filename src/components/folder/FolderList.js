@@ -5,7 +5,7 @@ import { GoalList } from "../goal/GoalList";
 import "./folder.css";
 
 export const FolderList = () => {
-  const { folders, getFolders, getFolderWithGoals } =
+  const { folders, getFolders, getFolderWithGoals, folderCreated, setFolderCreated } =
     useContext(FolderContext);
   const [addNewState, setAddNewState] = useState(false);
 
@@ -59,10 +59,12 @@ export const FolderList = () => {
         className="folder-addition"
         style={{ display: "flex", justifyContent: "center" }}
       >
+        
         { !addNewState ? <><button
           onClick={(event) => {
             event.preventDefault();
             setAddNewState(!addNewState);
+            setFolderCreated(false);
           }}
         >
           + Add Folder
@@ -70,6 +72,7 @@ export const FolderList = () => {
           onClick={(event) => {
             event.preventDefault();
             setAddNewState(!addNewState);
+            setFolderCreated(false);
           }}
         >
           Cancel

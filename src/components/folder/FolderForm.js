@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { FolderContext } from "./FolderProvider";
 
 export const FolderForm = () => {
-  const { addFolder, updateFolder, getFolders } = useContext(FolderContext);
+  const { addFolder, updateFolder, getFolders, folderCreated, setFolderCreated } = useContext(FolderContext);
   const folderId = null
 
 
@@ -29,6 +29,7 @@ export const FolderForm = () => {
   }
  
   return (
+      <> {folderCreated ? '' :
     <form className="">
       <div className="">
         <fieldset className="">
@@ -66,13 +67,12 @@ export const FolderForm = () => {
               onChange={handleControlledInputChange}
             >
               <option value="#000000">Select A Folder Color</option>
-              <option value="F13000">Red</option>
+              <option value="#F13000">Red</option>
               <option value="#ED8218">Orange</option>
               <option value="#8218ED">Purple</option>
-              <option value="##3000F1">Blue</option>
+              <option value="#3000F1">Blue</option>
               <option value="#00F130">Green</option>
             </select>
-          )
         </fieldset>
       </div>
 
@@ -83,12 +83,14 @@ export const FolderForm = () => {
             onClick={(event) => {
               event.preventDefault(); // Prevent browser from submitting the form and refreshing the page
               handleSaveFolder();
+              setFolderCreated(true)
             }}
           >
             {folderId ? <> Update Folder </> : <> Add New Folder </>}
           </button>
         </fieldset>
       </div>
-    </form>
+    </form>}
+    </>
   );
 };
