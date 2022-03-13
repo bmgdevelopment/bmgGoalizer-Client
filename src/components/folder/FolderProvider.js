@@ -52,11 +52,11 @@ export const FolderProvider = (props) => {
     .then(getFolders)
   };
 
-  const deleteFolder = (folderId) => {
-      return fetch(`https://localhost:8000/folders/${folderId}`, {
+  const deleteFolder = (folder) => {
+      return fetch(`http://localhost:8000/folders/${folder.id}`, {
           method: "DELETE",
           headers: {
-            "Authorization": `Token ${localStorage.getItem("rare_user_id")}`,
+            "Authorization": `Token ${localStorage.getItem("goalizer_user_id")}`,
             "Content-Type": "application/json" 
           }
       })

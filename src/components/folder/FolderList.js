@@ -5,11 +5,14 @@ import { GoalList } from "../goal/GoalList";
 import "./folder.css";
 
 export const FolderList = () => {
-  const { folders, getFolders, getFolderWithGoals, folderCreated, setFolderCreated } =
-    useContext(FolderContext);
+  const {
+    folders,
+    getFolders,
+    getFolderWithGoals,
+    deleteFolder,
+    setFolderCreated,
+  } = useContext(FolderContext);
   const [addNewState, setAddNewState] = useState(false);
-
-
 
   useEffect(() => {
     getFolders();
@@ -47,6 +50,13 @@ export const FolderList = () => {
               >
                 {folder?.name}
               </button>
+              <button 
+              key={`delete-folder-${folder.id}`}
+              onClick={event => {
+                event.preventDefault();
+                deleteFolder(folder);
+              }}
+              >🗑</button>
             </div>
           </>
         );
@@ -59,27 +69,33 @@ export const FolderList = () => {
         className="folder-addition"
         style={{ display: "flex", justifyContent: "center" }}
       >
-        
-        { !addNewState ? <><button
-          onClick={(event) => {
-            event.preventDefault();
-            setAddNewState(!addNewState);
-            setFolderCreated(false);
-          }}
-        >
-          + Add Folder
-        </button></> : <><button
-          onClick={(event) => {
-            event.preventDefault();
-            setAddNewState(!addNewState);
-            setFolderCreated(false);
-          }}
-        >
-          Cancel
-        </button></>}
-
+        {!addNewState ? (
+          <>
+            <button
+              onClick={(event) => {
+                event.preventDefault();
+                setAddNewState(!addNewState);
+                setFolderCreated(false);
+              }}
+            >
+              + Add Folder
+            </button>
+          </>
+        ) : (
+          <>
+            <button
+              onClick={(event) => {
+                event.preventDefault();
+                setAddNewState(!addNewState);
+                setFolderCreated(false);
+              }}
+            >
+              Cancel
+            </button>
+          </>
+        )}
       </div>
-      {addNewState ? <FolderForm /> : ''}
+      {addNewState ? <FolderForm /> : ""}
     </>
   );
 };
