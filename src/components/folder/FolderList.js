@@ -1,17 +1,19 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { FolderContext } from "./FolderProvider";
-import { GoalList} from "../goal/GoalList"
+import { FolderForm } from "./FolderForm";
+import { GoalList } from "../goal/GoalList";
 import "./folder.css";
 
 export const FolderList = () => {
-  const { folders, getFolders, getFolderWithGoals, addFolder } =
+  const { folders, getFolders, getFolderWithGoals } =
     useContext(FolderContext);
+  const [addNewState, setAddNewState] = useState(false);
 
-  useEffect(() => { getFolders() }, []);
 
-  const createFolder = () => {
-    //need modal!
-  }
+
+  useEffect(() => {
+    getFolders();
+  }, []);
 
   return (
     <>
@@ -19,34 +21,62 @@ export const FolderList = () => {
       {folders?.map((folder) => {
         return (
           <>
-          <div key={`label-${folder.id}`} className="folder-color-label" style={{display: 'flex'}}>
-            <div key={`color-${folder.id}`}  className="folder-color" style={{height: '10px', width: '10px', border: `2px solid ${folder.color}`, backgroundColor: `${folder.color}`, marginRight: '10px' }}></div>
-            <button
-            key={folder.id}
-            onClick={(event) => {
-              event.preventDefault();
-              getFolderWithGoals(folder);
-              <GoalList key={`goallist-${folder.id}`} folder={folder}/>
-              }}
+            <div
+              key={`label-${folder.id}`}
+              className="folder-color-label"
+              style={{ display: "flex" }}
             >
-              {folder?.name}
-            </button>
-          </div>
+              <div
+                key={`color-${folder.id}`}
+                className="folder-color"
+                style={{
+                  height: "10px",
+                  width: "10px",
+                  border: `2px solid ${folder.color}`,
+                  backgroundColor: `${folder.color}`,
+                  marginRight: "10px",
+                }}
+              ></div>
+              <button
+                key={folder.id}
+                onClick={(event) => {
+                  event.preventDefault();
+                  getFolderWithGoals(folder);
+                  <GoalList key={`goallist-${folder.id}`} folder={folder} />;
+                }}
+              >
+                {folder?.name}
+              </button>
+            </div>
           </>
         );
       })}
-      <br/>
-      <hr style={{color: 'gray', width: '150px'}}/>
+      <br />
+      <hr style={{ color: "gray", width: "150px" }} />
       <br />
 
-      <div className="folder-addition" style={{display: 'flex', justifyContent: 'center'}}>
-      <button
-         onClick={(event) => {
-          event.preventDefault();
-          createFolder();
+      <div
+        className="folder-addition"
+        style={{ display: "flex", justifyContent: "center" }}
+      >
+        { !addNewState ? <><button
+          onClick={(event) => {
+            event.preventDefault();
+            setAddNewState(!addNewState);
           }}
-      >+ Add Folder</button>
+        >
+          + Add Folder
+        </button></> : <><button
+          onClick={(event) => {
+            event.preventDefault();
+            setAddNewState(!addNewState);
+          }}
+        >
+          Cancel
+        </button></>}
+
       </div>
+      {addNewState ? <FolderForm /> : ''}
     </>
   );
 };
