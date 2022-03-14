@@ -10,13 +10,13 @@ export const FolderList = () => {
     getFolders,
     getFolderWithGoals,
     deleteFolder,
-    setFolderCreated,
+    setFolderCreated
   } = useContext(FolderContext);
   const [addNewState, setAddNewState] = useState(false);
 
-  useEffect(() => {
-    getFolders();
-  }, []);
+  useEffect(() => {getFolders()}, []);
+
+  useEffect(() => <GoalList/>)
 
   return (
     <>

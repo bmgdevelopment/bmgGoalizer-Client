@@ -30,6 +30,7 @@ export const ApplicationView = () => {
               <GoalList />
             </div>
             <div className="column4">
+              {/* <GoalForm /> */}
               <GoalView />
               {showHome && <GoalizerHome />}
             </div>
