@@ -3,7 +3,7 @@ import { FolderContext } from "./FolderProvider";
 
 export const FolderForm = () => {
   const { addFolder, updateFolder, getFolders, folderCreated, setFolderCreated } = useContext(FolderContext);
-  const folderId = null
+  const folderId = null //NEED TO CHANGE FOLDER ID info for updateFolder
 
 
   const [folder, setFolder] = useState({

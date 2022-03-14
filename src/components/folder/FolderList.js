@@ -21,7 +21,7 @@ export const FolderList = () => {
   return (
     <>
       <h1>Folder List</h1>
-      {folders?.map((folder) => {
+      { folders?.map((folder) => {
         return (
           <>
             <div

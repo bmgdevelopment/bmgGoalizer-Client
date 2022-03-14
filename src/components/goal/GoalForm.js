@@ -1,80 +1,146 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { GoalContext } from "./GoalProvider";
 import { FolderContext } from "../folder/FolderProvider";
-// import { GoalContext } from "./GoalProvider";
 
-export const FolderForm = () => {
-  const { addFolder, updateFolder, getFolders, folderCreated, setFolderCreated } = useContext(FolderContext);
-  const folderId = null
-
-
-  const [folder, setFolder] = useState({
+export const GoalForm = () => {
+  const { addGoal, updateGoal, getGoals, setAddNewGoal } = useContext(GoalContext);
+  const { folders} = useContext(FolderContext)
+  const goalId = null //Need to change goalId for updateGoal
+  const [goal, setGoal] = useState({
       creator: parseInt(localStorage.getItem("goalizer_user_id")),
-      name: '',
-      color: ''
+      title: '',
+      description: '',
+      creation_date: new Date(),
+      folder: '',
+      is_complete: '',
+      is_favorite: ''
   })
 
   const handleControlledInputChange = e => {
-      const newFolder = {...folder}
-      newFolder[e.target.name] = e.target.value
-      setFolder(newFolder)
+      const newGoal = {...goal}
+      newGoal[e.target.name] = e.target.value
+      setGoal(newGoal)
   }
 
-  const handleSaveFolder = () => {
-      return (folder.id ? 
-      updateFolder :
-      addFolder({
-          creator: folder.creator,
-          name: folder.name,
-          color: folder.color
-      }).then(getFolders))
+  const handleSaveGoal = () => {
+      return (goal.id ? 
+      updateGoal :
+      addGoal({
+          creator: goal.creator,
+          title: goal.title,
+          description: goal.description,
+          creation_date: goal.creation_date,
+          folder: goal.folder,
+          is_complete: goal.is_complete,
+          is_favorite: goal.is_favorite
+      }).then(getGoals))
   }
+
+  // useEffect(() => { getGoals() })
  
   return (
-      <> {folderCreated ? '' :
+      <> {
     <form className="">
       <div className="">
+        
         <fieldset className="">
-          <label className="" htmlFor="folderForm">
-            {folderId ? (
-              <> Update Folder Name </>
+          <label className="" htmlFor="goalForm">
+            {goalId ? (
+              <> Update goal Name </>
             ) : (
-              <> Add New Folder Name</>
+              <> Add New Goal Title</>
             )}
           </label>
           <textarea
             type="text"
-            name="name"
-            id="folderName"
+            name="title"
+            id="goalName"
             className=""
-            placeholder=""
+            placeholder="Goal title here"
             required
             autoFocus
-            value={folder.name}
+            value={goal.title}
+            onChange={handleControlledInputChange}
+          />
+        </fieldset>
+
+        <fieldset className="">
+          <label className="" htmlFor="goalForm">
+            Description
+          </label>
+          <textarea
+            type="text"
+            name="description"
+            id="goalDescription"
+            className=""
+            placeholder="Describe your goal here"
+            required
+            autoFocus
+            value={goal.description}
             onChange={handleControlledInputChange}
           />
         </fieldset>
 
         <fieldset className="">
           <label className="" htmlFor="itemType">
-            Label Color
+            Folder
           </label>
             <select
-              name="color"
-              id="folderColor"
+              name="folder"
+              id="goalFolder"
               className=""
               placeholder=""
               required
-              value={folder.color}
+              value={goal.folder}
               onChange={handleControlledInputChange}
             >
-              <option value="#000000">Select A Folder Color</option>
-              <option value="#F13000">Red</option>
-              <option value="#ED8218">Orange</option>
-              <option value="#8218ED">Purple</option>
-              <option value="#3000F1">Blue</option>
-              <option value="#00F130">Green</option>
+              <option value="0">Select A Folder</option>
+              { folders?.map(folder => {
+                return (
+                  <option value={folder.id}>{folder.name}</option>
+                )
+              })}
             </select>
         </fieldset>
+
+        <fieldset className="">
+          <label className="" htmlFor="itemType">
+            Complete?
+          </label>
+            <select
+              name="is_complete"
+              id="goalIsComplete"
+              className=""
+              placeholder=""
+              required
+              value={goal.is_complete}
+              onChange={handleControlledInputChange}
+            >
+              <option value="0">Is this goal complete?</option>
+              <option value={'False'}>False</option>
+              <option value={'True'}>True</option>
+            </select>
+        </fieldset>
+
+        <fieldset className="">
+          <label className="" htmlFor="itemType">
+            Favorite?
+          </label>
+            <select
+              name="is_favorite"
+              id="goalFavorite"
+              className=""
+              placeholder=""
+              required
+              value={goal.is_favorite}
+              onChange={handleControlledInputChange}
+            >
+              <option value="0">Is this goal a favorite?</option>
+              <option value={'False'}>False</option>
+              <option value={'True'}>True</option>
+            </select>
+        </fieldset>
+
       </div>
 
       <div className="">
@@ -83,11 +149,12 @@ export const FolderForm = () => {
             className=""
             onClick={(event) => {
               event.preventDefault(); // Prevent browser from submitting the form and refreshing the page
-              handleSaveFolder();
-              setFolderCreated(true)
+              handleSaveGoal();
+              setAddNewGoal(false); //should close goalform on applicationview
+              // setGoalCreated(true) //sets goalCreated to true
             }}
           >
-            {folderId ? <> Update Folder </> : <> Add New Folder </>}
+            {goalId ? <> Update goal </> : <> Add New Goal </>}
           </button>
         </fieldset>
       </div>

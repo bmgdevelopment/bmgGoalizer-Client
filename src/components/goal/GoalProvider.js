@@ -8,7 +8,7 @@ export const GoalProvider = (props) => {
   const [ goalCreated, setGoalCreated ] = useState(false);
 
   const getGoals = () => {
-    return fetch("http://localhost:8000/folders", {
+    return fetch("http://localhost:8000/goals", {
       method: "GET",
       headers: {
         Authorization: `Token ${localStorage.getItem("goalizer_user_id")}`,
@@ -41,7 +41,7 @@ export const GoalProvider = (props) => {
   };
 
   const updateGoal = (goal) => {
-    return fetch(`http://localhost:8000/folders/${goal.id}`, {
+    return fetch(`http://localhost:8000/goals/${goal.id}`, {
       method: "PUT",
       headers: {
         Authorization: `Token ${localStorage.getItem("goalizer_user_id")}`,
@@ -52,7 +52,7 @@ export const GoalProvider = (props) => {
   };
 
   const deleteGoal = (goal) => {
-    return fetch(`http://localhost:8000/folders/${goal.id}`, {
+    return fetch(`http://localhost:8000/goals/${goal.id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Token ${localStorage.getItem("goalizer_user_id")}`,
@@ -64,7 +64,8 @@ export const GoalProvider = (props) => {
   return (
     <GoalContext.Provider
       value={{ goal, setGoal, goals, setGoals, getOneGoal, 
-        getGoals, addGoal, updateGoal, deleteGoal, addNewGoal, setAddNewGoal, goalCreated, setGoalCreated }}
+        getGoals, addGoal, updateGoal, deleteGoal, addNewGoal, 
+        setAddNewGoal, goalCreated, setGoalCreated }}
     >
       {props.children}
     </GoalContext.Provider>

@@ -7,13 +7,24 @@ export const GoalView = () => {
 
     return (
         <>
-            <div>
+           {  <div>
                 <p>{goal.title}</p>
                 <p>{goal.description}</p>
                 <p>{goal.creation_date}</p>
-                {/* <p> {goal && goal.is_complete ? 'Is complete' : 'Is not complete'}</p> */}
-                {/* <p> {goal && goal.is_favorite ? 'Is favorite' : 'Is not favorite'}</p> */}
+                <p>{goal && goal.is_complete ? 'Is complete' : 'Is not complete'}</p>
+                <p>{goal && goal.is_favorite ? 'Is favorite' : 'Is not favorite'}</p>
             </div>
+            }
+            {/* 
+             { goal.length ? <div>
+                <p>{goal.title}</p>
+                <p>{goal.description}</p>
+                <p>{goal.creation_date}</p>
+                <p>{goal && goal.is_complete ? 'Is complete' : 'Is not complete'}</p>
+                <p>{goal && goal.is_favorite ? 'Is favorite' : 'Is not favorite'}</p>
+            </div>
+            : "" }
+            */}
         </>
     )
 }
