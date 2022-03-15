@@ -5,11 +5,12 @@ import { GoalForm } from "./GoalForm"
 
 export const GoalList = () => {
   const { goalsForFolder } = useContext(FolderContext);
-  const { getOneGoal, addNewGoal, setAddNewGoal } = useContext(GoalContext);
+  const { getOneGoal } = useContext(GoalContext);
 
   useEffect(() => goalsForFolder);
 
   const goalsMapped = () => {
+    
     return goalsForFolder?.map((goal) => {
       return (
         <button
@@ -21,14 +22,20 @@ export const GoalList = () => {
         >
           <p>{goal?.title}</p>
           <p>{goal?.description}</p>
-          <p>{goal?.creation_date}</p>
-          <p>{goal?.is_complete}</p>
-          <p>{goal && goal?.is_complete === true ? "Is complete" : "Is not complete"}</p>
-          <p>{goal && goal?.is_favorite === true ? "Is favorite" : "Is not favorite"}</p>
+          <p>{shortenedDate(goal)}</p>
+          <p>{goal?.is_complete ? "Is complete" : "Is not complete"}</p>
+          <p>{goal?.is_favorite ? "Is favorite" : "Is not favorite"}</p>
         </button>
       );
     });
   };
+
+  const shortenedDate = (goal) => {
+    return (
+    <>
+    {new Date(`${goal.creation_date}`).toString()}
+    </>
+    )}
 
   return (
     <>
@@ -38,13 +45,6 @@ export const GoalList = () => {
       ) : (
         <div>{"No goals yet, please create one!"}</div>
       )}
-      {/* ADD GOAL BUTTON MAY GET MOVED */}
-      <button
-        onClick={(event) => {
-          event.preventDefault();
-          setAddNewGoal(!addNewGoal); //sets to true and opens goal form...need to close form
-          <GoalForm />
-        }}> + Add Goal </button>
     </>
   );
 };

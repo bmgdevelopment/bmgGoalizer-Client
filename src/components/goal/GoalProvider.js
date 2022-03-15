@@ -3,7 +3,7 @@ export const GoalContext = React.createContext();
 
 export const GoalProvider = (props) => {
   const [goals, setGoals] = useState([]);
-  const [goal, setGoal] = useState([]);
+  const [goal, setGoal] = useState({ creation_date: ""});
   const [ addNewGoal, setAddNewGoal ] = useState(false);
   const [ goalCreated, setGoalCreated ] = useState(false);
 

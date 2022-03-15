@@ -67,7 +67,7 @@ export const ApplicationView = () => {
                 ) : (
                   ""
                 )}
-                {showGoalForm == false ? <GoalView /> : ""}
+                {showGoalForm === false ? <GoalView /> : ""}
                 {/* <GoalView /> */}
                 {/* {showHome && <GoalizerHome />} */}
               </div>
