@@ -1,24 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
-import { GoalizerHome } from "./GoalizerHome";
+// import { GoalizerHome } from "./GoalizerHome";
 import { FolderList } from "./folder/FolderList";
-import { FolderProvider } from "./folder/FolderProvider";
-import { GoalProvider } from "./goal/GoalProvider";
 import { GoalList } from "./goal/GoalList";
 import { GoalView } from "./goal/GoalView";
 import { GoalContext } from "./goal/GoalProvider";
 import { GoalForm } from "./goal/GoalForm";
 
 export const ApplicationView = () => {
-  const [showHome, setShowHome] = useState(false);
-  const [showGoalForm, setShowGoalForm] = useState(false);
-  // const { addNewGoal, setAddNewGoal } = useContext(GoalContext);
+  // const [showHome, setShowHome] = useState(false);
+  const { setGoalCreated, showGoalForm, setShowGoalForm } = useContext(GoalContext);
 
-  // useEffect(() => setAddNewGoal())
+  useEffect(() => setGoalCreated())
+  useEffect(() => showGoalForm)
+
 
   return (
     <>
-      <FolderProvider>
-        <GoalProvider>
           <main style={{ margin: "0px" }}>
             {/* <Route exact path="/">
           <GoalizerHome />
@@ -30,6 +27,7 @@ export const ApplicationView = () => {
                 onClick={(event) => {
                   event.preventDefault();
                   setShowGoalForm(!showGoalForm); //sets to true and opens goal form...need
+                  setGoalCreated(false)
                 }}
               >
                 + Add Goal
@@ -67,14 +65,13 @@ export const ApplicationView = () => {
                 ) : (
                   ""
                 )}
-                {showGoalForm === false ? <GoalView /> : ""}
-                {/* <GoalView /> */}
+
+                {showGoalForm === false ? <GoalView/> : ""}
+                
                 {/* {showHome && <GoalizerHome />} */}
               </div>
             </div>
           </main>
-        </GoalProvider>
-      </FolderProvider>
     </>
   );
 };

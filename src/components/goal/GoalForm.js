@@ -3,7 +3,7 @@ import { GoalContext } from "./GoalProvider";
 import { FolderContext } from "../folder/FolderProvider";
 
 export const GoalForm = () => {
-  const { addGoal, updateGoal, getGoals, setAddNewGoal } = useContext(GoalContext);
+  const { addGoal, updateGoal, getGoals, setAddNewGoal, setGoalCreated, goalCreated } = useContext(GoalContext);
   const { folders} = useContext(FolderContext)
   const goalId = null //Need to change goalId for updateGoal
   const [goal, setGoal] = useState({
@@ -35,8 +35,7 @@ export const GoalForm = () => {
           is_favorite: goal.is_favorite
       }).then(getGoals))
   }
-
-  // useEffect(() => { getGoals() })
+  useEffect(() => setGoalCreated())
  
   return (
       <> {
@@ -117,8 +116,8 @@ export const GoalForm = () => {
               onChange={handleControlledInputChange}
             >
               <option value="0">Is this goal complete?</option>
-              <option value={'False'}>False</option>
-              <option value={'True'}>True</option>
+              <option value={'False'}>Not quite...</option>
+              <option value={'True'}>Yes, indeed!</option>
             </select>
         </fieldset>
 
@@ -136,8 +135,8 @@ export const GoalForm = () => {
               onChange={handleControlledInputChange}
             >
               <option value="0">Is this goal a favorite?</option>
-              <option value={'False'}>False</option>
-              <option value={'True'}>True</option>
+              <option value={'False'}>Nope</option>
+              <option value={'True'}>For sure!</option>
             </select>
         </fieldset>
 
@@ -151,7 +150,7 @@ export const GoalForm = () => {
               event.preventDefault(); // Prevent browser from submitting the form and refreshing the page
               handleSaveGoal();
               setAddNewGoal(false); //should close goalform on applicationview
-              // setGoalCreated(true) //sets goalCreated to true
+              setGoalCreated(!goalCreated) //sets goalCreated to true
             }}
           >
             {goalId ? <> Update goal </> : <> Add New Goal </>}

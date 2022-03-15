@@ -5,9 +5,10 @@ import { GoalForm } from "./GoalForm"
 
 export const GoalList = () => {
   const { goalsForFolder } = useContext(FolderContext);
-  const { getOneGoal } = useContext(GoalContext);
+  const { getOneGoal, setShowGoalForm, showGoalForm } = useContext(GoalContext);
 
   useEffect(() => goalsForFolder);
+  useEffect(() => showGoalForm);
 
   const goalsMapped = () => {
     
@@ -18,6 +19,9 @@ export const GoalList = () => {
           onClick={(event) => {
             event.preventDefault();
             getOneGoal(goal);
+            if (showGoalForm) {
+              setShowGoalForm(false);
+            }
           }}
         >
           <p>{goal?.title}</p>

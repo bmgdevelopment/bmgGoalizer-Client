@@ -5,13 +5,18 @@ import { ApplicationView } from "./ApplicationView";
 // import { NavBar } from "./nav/NavBar"
 // import { Login } from "./auth/Login"
 // import { Register } from "./auth/Register"
+import { GoalProvider } from "./goal/GoalProvider";
+import { FolderProvider } from "./folder/FolderProvider";
 import "./Goalizer.css";
 
 export const Goalizer = () => {
   return (
     <>
-      <ApplicationView />
-
+      <FolderProvider>
+        <GoalProvider>
+          <ApplicationView />
+        </GoalProvider>
+      </FolderProvider>
     </>
     /*
      const history = useHistory()
