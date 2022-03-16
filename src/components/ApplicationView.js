@@ -8,9 +8,8 @@ import { GoalForm } from "./goal/GoalForm";
 
 export const ApplicationView = () => {
   // const [showHome, setShowHome] = useState(false);
-  const { setGoalCreated, showGoalForm, setShowGoalForm, updateGoalView, setUpdateGoalView} = useContext(GoalContext);
+  const { showGoalForm, setShowGoalForm, updateGoalView, setUpdateGoalView} = useContext(GoalContext);
 
-  useEffect(() => setGoalCreated())
   useEffect(() => showGoalForm )
   useEffect(() => updateGoalView )
 
@@ -25,7 +24,6 @@ export const ApplicationView = () => {
                 onClick={(event) => {
                   event.preventDefault();
                   setShowGoalForm(!showGoalForm); //sets to true and opens goal form...need
-                  setGoalCreated(false)
                 }}
               >
                 + Add Goal

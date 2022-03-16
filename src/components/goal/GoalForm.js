@@ -3,9 +3,9 @@ import { GoalContext } from "./GoalProvider";
 import { FolderContext } from "../folder/FolderProvider";
 
 export const GoalForm = () => {
-  const { addGoal, updateGoal, getGoals, setAddNewGoal, setGoalCreated, 
-    goalCreated, showGoalForm, setShowGoalForm, updateGoalView, 
-    setUpdateGoalView } = useContext(GoalContext);
+  const { addGoal, updateGoal, getGoals, setAddNewGoal,
+     showGoalForm, setShowGoalForm, updateGoalView, 
+    setUpdateGoalView, goalToUpdate } = useContext(GoalContext);
   const { folders} = useContext(FolderContext)
   const goalId = null //Need to change goalId for updateGoal
   const [goal, setGoal] = useState({
@@ -19,22 +19,33 @@ export const GoalForm = () => {
   })
 
   const handleControlledInputChange = e => {
-      const newGoal = {...goal}
-      newGoal[e.target.name] = e.target.value
-      setGoal(newGoal)
+    
+    // const newGoal = {...goal}
+    // newGoal[e.target.name] = e.target.value
+    // setGoal(newGoal)
+
+      if (updateGoalView) {
+        const updatingGoal = {...goalToUpdate}
+        updatingGoal[e.target.name] = e.target.value
+        setGoal(updatingGoal)
+      } else {
+        const newGoal = {...goal}
+        newGoal[e.target.name] = e.target.value
+        setGoal(newGoal)
+      }
   }
 
   const handleSaveGoal = () => {
       
-    if (goal.title.length && goal.description.length
+    if (goal.title && goal.description
       && goal.folder && goal.is_complete.length && goal.is_favorite.length ) {
-        // setGoalCreated(true) //sets goalCreated to true
-        window.alert(`Your goal entitled "${goal.title}" has been created!`)
-
+        
         if (showGoalForm) {
           setShowGoalForm(false);
         }
         
+        window.alert(`Your goal entitled "${goal.title}" has been created!`)
+
        addGoal({
          creator: goal.creator,
          title: goal.title,
@@ -60,9 +71,6 @@ export const GoalForm = () => {
       //     is_favorite: goal.is_favorite
       // }).then(getGoals))
   }
-
-
-  useEffect(() => setGoalCreated())
  
   return (
       <> {
@@ -177,7 +185,6 @@ export const GoalForm = () => {
               event.preventDefault(); // Prevent browser from submitting the form and refreshing the page
               handleSaveGoal();
               setAddNewGoal(false); //should close goalform on applicationview
-              // setGoalCreated(!goalCreated) //sets goalCreated to true
               // window.alert(`Your goal entitled "${goal.title}" has been created!`)
               
               //showGoalForm opens and closes form

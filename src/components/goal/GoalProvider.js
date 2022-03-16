@@ -6,7 +6,6 @@ export const GoalProvider = (props) => {
   const [ goal, setGoal ] = useState({ creation_date: ""});
   const [ goalToUpdate, setGoalToUpdate ] = useState({});
   const [ addNewGoal, setAddNewGoal ] = useState(false);
-  const [ goalCreated, setGoalCreated ] = useState(false);
   const [ viewGoalForm, setViewGoalForm ] = useState(false);
   const [ showGoalForm, setShowGoalForm ] = useState(false);
   const [ updateGoalView, setUpdateGoalView ] = useState(false);
@@ -69,9 +68,9 @@ export const GoalProvider = (props) => {
     <GoalContext.Provider
       value={{ goal, setGoal, goals, setGoals, getOneGoal, 
         getGoals, addGoal, updateGoal, deleteGoal, addNewGoal, 
-        setAddNewGoal, goalCreated, setGoalCreated, viewGoalForm, 
-        setViewGoalForm, showGoalForm, setShowGoalForm, updateGoalView, 
-        setUpdateGoalView, goalToUpdate, setGoalToUpdate }}
+        setAddNewGoal, viewGoalForm, setViewGoalForm, showGoalForm, 
+        setShowGoalForm, updateGoalView, setUpdateGoalView, goalToUpdate, 
+        setGoalToUpdate }}
     >
       {props.children}
     </GoalContext.Provider>
