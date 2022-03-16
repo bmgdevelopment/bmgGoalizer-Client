@@ -7,7 +7,7 @@ export const GoalForm = () => {
      showGoalForm, setShowGoalForm, updateGoalView, 
     setUpdateGoalView, goalToUpdate } = useContext(GoalContext);
   const { folders} = useContext(FolderContext)
-  const goalId = null //Need to change goalId for updateGoal
+  // const goalId = null //Need to change goalId for updateGoal
   // const [goal, setGoal] = useState({
   //   creator: parseInt(localStorage.getItem("goalizer_user_id")),
   //   title: '',
@@ -17,6 +17,19 @@ export const GoalForm = () => {
   //   is_complete: '',
   //   is_favorite: ''
   // })
+
+  /*
+  // 🙃 🤔 CONTEXT INFO HERE: 
+  1. 'goalToUpdate' object is being set from the GoalView.js. There's a button there that
+  sets 'setGoalToUpdate(goal)' with the currently viewed goal...
+
+  2. 'goalState()' uses the ternary check of 'updateGoalView ? xxx : YYY'.
+  I tried to force the object build within this variable to force the data to 
+  sit properly in the exact key/value pairs.
+
+  3. 'handleUpdateGoal()' is purposely separate form 'handleSaveGoal()'
+
+  */
   
   const goalState = updateGoalView 
   ? goalToUpdate 
@@ -40,15 +53,9 @@ export const GoalForm = () => {
 }
   const [goal, setGoal] = useState(goalState)
 
-  // useEffect(() => {
-  // if (updateGoalView) {
-  //   setGoal(goalToUpdate)
-  //     }
-  // });
-
-  console.log('Update goal view status: ', updateGoalView)
-  console.log('Update goal to update: ', goalToUpdate)
-  console.log('Update goal: ', goal)
+  // console.log('Update goal view status: ', updateGoalView)
+  // console.log('Update goal to update: ', goalToUpdate)
+  // console.log('Update goal: ', goal)
 
   const handleControlledInputChange = e => {
     
@@ -90,19 +97,7 @@ export const GoalForm = () => {
     } else {
       window.alert("Please complete the goal form to save!")
     }
-
-    // return (goal.id ? 
-      // updateGoal :
-      // addGoal({
-      //     creator: goal.creator,
-      //     title: goal.title,
-      //     description: goal.description,
-      //     creation_date: goal.creation_date,
-      //     folder: goal.folder,
-      //     is_complete: goal.is_complete,
-      //     is_favorite: goal.is_favorite
-      // }).then(getGoals))
-  }
+  };
 
   const handleUpdateGoal = () => {
       console.log('Updating with new info here: ', goal)
@@ -243,9 +238,9 @@ export const GoalForm = () => {
           <button
             className=""
             onClick={(event) => {
-              event.preventDefault(); // Prevent browser from submitting the form and refreshing the page
+              event.preventDefault(); 
               updateGoalView ? handleUpdateGoal() : handleSaveGoal();
-              setAddNewGoal(false); //should close goalform on applicationview
+              setAddNewGoal(false); // closes goalform on applicationview
             }}
           >
             {updateGoalView ? <> Update Goal </> : <> Add New Goal </>}
