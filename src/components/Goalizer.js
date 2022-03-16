@@ -1,19 +1,15 @@
 import React from "react";
 import { ApplicationView } from "./ApplicationView";
-// import { Route } from "react-router-dom"
-// import { ApplicationViews } from "./ApplicationViews"
-// import { NavBar } from "./nav/NavBar"
-// import { Login } from "./auth/Login"
-// import { Register } from "./auth/Register"
 import { GoalProvider } from "./goal/GoalProvider";
 import { FolderProvider } from "./folder/FolderProvider";
+// import { Login } from "./auth/Login"
+// import { Register } from "./auth/Register"
 import "./Goalizer.css";
 
 export const Goalizer = () => {
   return (
     <>
-    {/* <Route exact path="/">
-    </Route> */}
+ 
       <FolderProvider>
         <GoalProvider>
           <ApplicationView />

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 export const GoalContext = React.createContext();
 
 export const GoalProvider = (props) => {
-  const [goals, setGoals] = useState([]);
-  const [goal, setGoal] = useState({ creation_date: ""});
+  const [ goals, setGoals ] = useState([]);
+  const [ goal, setGoal ] = useState({ creation_date: ""});
+  const [ goalToUpdate, setGoalToUpdate ] = useState({});
   const [ addNewGoal, setAddNewGoal ] = useState(false);
   const [ goalCreated, setGoalCreated ] = useState(false);
   const [ viewGoalForm, setViewGoalForm ] = useState(false);
@@ -70,7 +71,7 @@ export const GoalProvider = (props) => {
         getGoals, addGoal, updateGoal, deleteGoal, addNewGoal, 
         setAddNewGoal, goalCreated, setGoalCreated, viewGoalForm, 
         setViewGoalForm, showGoalForm, setShowGoalForm, updateGoalView, 
-        setUpdateGoalView }}
+        setUpdateGoalView, goalToUpdate, setGoalToUpdate }}
     >
       {props.children}
     </GoalContext.Provider>

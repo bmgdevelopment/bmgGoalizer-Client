@@ -8,10 +8,11 @@ import { GoalForm } from "./goal/GoalForm";
 
 export const ApplicationView = () => {
   // const [showHome, setShowHome] = useState(false);
-  const { setGoalCreated, showGoalForm, setShowGoalForm } = useContext(GoalContext);
+  const { setGoalCreated, showGoalForm, setShowGoalForm, updateGoalView, setUpdateGoalView} = useContext(GoalContext);
 
   useEffect(() => setGoalCreated())
-  useEffect(() => showGoalForm)
+  useEffect(() => showGoalForm )
+  useEffect(() => updateGoalView )
 
 
   return (
@@ -62,6 +63,21 @@ export const ApplicationView = () => {
                 ) : (
                   ""
                 )}
+                {/* {updateGoalView ? (
+                  <>
+                    <GoalForm />
+                    <button
+                      onClick={(event) => {
+                        event.preventDefault();
+                        setUpdateGoalView(false);
+                      }}
+                    >
+                      Cancel Update Goal Form
+                    </button>
+                  </>
+                ) : (
+                  ""
+                )} */}
 
                 {showGoalForm === false ? <GoalView/> : ""}
                 

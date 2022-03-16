@@ -3,7 +3,9 @@ import { GoalContext } from "./GoalProvider";
 import { FolderContext } from "../folder/FolderProvider";
 
 export const GoalForm = () => {
-  const { addGoal, updateGoal, getGoals, setAddNewGoal, setGoalCreated, goalCreated, showGoalForm, setShowGoalForm } = useContext(GoalContext);
+  const { addGoal, updateGoal, getGoals, setAddNewGoal, setGoalCreated, 
+    goalCreated, showGoalForm, setShowGoalForm, updateGoalView, 
+    setUpdateGoalView } = useContext(GoalContext);
   const { folders} = useContext(FolderContext)
   const goalId = null //Need to change goalId for updateGoal
   const [goal, setGoal] = useState({
@@ -23,18 +25,43 @@ export const GoalForm = () => {
   }
 
   const handleSaveGoal = () => {
-      return (goal.id ? 
-      updateGoal :
-      addGoal({
-          creator: goal.creator,
-          title: goal.title,
-          description: goal.description,
-          creation_date: goal.creation_date,
-          folder: goal.folder,
-          is_complete: goal.is_complete,
-          is_favorite: goal.is_favorite
-      }).then(getGoals))
+      
+    if (goal.title.length && goal.description.length
+      && goal.folder && goal.is_complete.length && goal.is_favorite.length ) {
+        // setGoalCreated(true) //sets goalCreated to true
+        window.alert(`Your goal entitled "${goal.title}" has been created!`)
+
+        if (showGoalForm) {
+          setShowGoalForm(false);
+        }
+        
+       addGoal({
+         creator: goal.creator,
+         title: goal.title,
+         description: goal.description,
+         creation_date: goal.creation_date,
+         folder: goal.folder,
+         is_complete: goal.is_complete,
+         is_favorite: goal.is_favorite
+     }).then(getGoals)
+    } else {
+      window.alert("Please complete the goal form to save!")
+    }
+
+    // return (goal.id ? 
+      // updateGoal :
+      // addGoal({
+      //     creator: goal.creator,
+      //     title: goal.title,
+      //     description: goal.description,
+      //     creation_date: goal.creation_date,
+      //     folder: goal.folder,
+      //     is_complete: goal.is_complete,
+      //     is_favorite: goal.is_favorite
+      // }).then(getGoals))
   }
+
+
   useEffect(() => setGoalCreated())
  
   return (
@@ -150,11 +177,14 @@ export const GoalForm = () => {
               event.preventDefault(); // Prevent browser from submitting the form and refreshing the page
               handleSaveGoal();
               setAddNewGoal(false); //should close goalform on applicationview
-              setGoalCreated(!goalCreated) //sets goalCreated to true
-              if (showGoalForm) {
-                setShowGoalForm(false);
-              }
-              window.alert(`Your goal entitled "${goal.title}" has been created!`)
+              // setGoalCreated(!goalCreated) //sets goalCreated to true
+              // window.alert(`Your goal entitled "${goal.title}" has been created!`)
+              
+              //showGoalForm opens and closes form
+              // if (showGoalForm) {
+              //   setShowGoalForm(false);
+              // }
+
             }}
           >
             {goalId ? <> Update Goal </> : <> Add New Goal </>}

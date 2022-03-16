@@ -4,11 +4,15 @@ import { GoalContext } from "./GoalProvider";
 import { GoalForm } from "./GoalForm"
 
 export const GoalList = () => {
-  const { goalsForFolder } = useContext(FolderContext);
+  const { goalsForFolder, getFolderWithGoals, setGoalsForFolder } = useContext(FolderContext);
   const { getOneGoal, setShowGoalForm, showGoalForm } = useContext(GoalContext);
 
   useEffect(() => goalsForFolder);
   useEffect(() => showGoalForm);
+  // Need to refresh goals for folder
+  // useEffect(() => {
+  //   getFolderWithGoals().then((data) => setGoalsForFolder(data))
+  // }, []);
 
   const goalsMapped = () => {
     
