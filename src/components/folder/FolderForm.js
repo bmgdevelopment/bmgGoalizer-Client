@@ -87,7 +87,7 @@ export const FolderForm = () => {
               setFolderCreated(false)
               setAddNewState(!addNewState);
               window.alert(`Your folder ${folder.name} has been added!`)
-              // history.push("/")
+              window.location.reload(true);
             }}
           >
             {folderId ? <> Update Folder </> : <> Add New Folder </>}

@@ -18,6 +18,15 @@ export const GoalForm = () => {
       is_favorite: ''
   })
 
+  useEffect(() => {
+    if (updateGoalView) {
+      setGoal(goalToUpdate)
+    }});
+
+  console.log('Update goal view status: ', updateGoalView)
+  console.log('Update goal to update: ', goalToUpdate)
+  console.log('Update goal: ', goal)
+
   const handleControlledInputChange = e => {
     
     // const newGoal = {...goal}
@@ -71,6 +80,31 @@ export const GoalForm = () => {
       //     is_favorite: goal.is_favorite
       // }).then(getGoals))
   }
+
+  const handleUpdateGoal = () => {
+      
+    if (goal.title && goal.description
+      && goal.folder && goal.is_complete.length && goal.is_favorite.length ) {
+        
+        if (showGoalForm) {
+          setShowGoalForm(false);
+        }
+        
+        window.alert(`Your goal entitled "${goal.title}" has been updated!`)
+
+       updateGoal({
+         creator: goal.creator,
+         title: goal.title,
+         description: goal.description,
+         creation_date: goal.creation_date,
+         folder: goal.folder,
+         is_complete: goal.is_complete,
+         is_favorite: goal.is_favorite
+     }).then(getGoals)
+    } else {
+      window.alert("Please complete the goal form to save!")
+    }
+  }
  
   return (
       <> {
@@ -79,7 +113,7 @@ export const GoalForm = () => {
         
         <fieldset className="">
           <label className="" htmlFor="goalForm">
-            {goalId ? (
+            {updateGoalView ? (
               <> Update Goal Name </>
             ) : (
               <> Add New Goal Title</>
@@ -125,7 +159,7 @@ export const GoalForm = () => {
               className=""
               placeholder=""
               required
-              value={goal.folder}
+              value={updateGoalView ? goal.folder.id : goal.folder}
               onChange={handleControlledInputChange}
             >
               <option value="0">Select A Folder</option>
@@ -151,8 +185,8 @@ export const GoalForm = () => {
               onChange={handleControlledInputChange}
             >
               <option value="0">Is this goal complete?</option>
-              <option value={'False'}>Not quite...</option>
-              <option value={'True'}>Yes, indeed!</option>
+              <option value={updateGoalView ? 'false' :'False'}>Not quite...</option>
+              <option value={updateGoalView ? 'true' : 'True'}>Yes, indeed!</option>
             </select>
         </fieldset>
 
@@ -170,8 +204,8 @@ export const GoalForm = () => {
               onChange={handleControlledInputChange}
             >
               <option value="0">Is this goal a favorite?</option>
-              <option value={'False'}>Nope</option>
-              <option value={'True'}>For sure!</option>
+              <option value={updateGoalView ? 'false' : 'False'}>Nope</option>
+              <option value={updateGoalView ? 'true' :'True'}>For sure!</option>
             </select>
         </fieldset>
 
@@ -183,18 +217,11 @@ export const GoalForm = () => {
             className=""
             onClick={(event) => {
               event.preventDefault(); // Prevent browser from submitting the form and refreshing the page
-              handleSaveGoal();
+              updateGoalView ? handleUpdateGoal() : handleSaveGoal();
               setAddNewGoal(false); //should close goalform on applicationview
-              // window.alert(`Your goal entitled "${goal.title}" has been created!`)
-              
-              //showGoalForm opens and closes form
-              // if (showGoalForm) {
-              //   setShowGoalForm(false);
-              // }
-
             }}
           >
-            {goalId ? <> Update Goal </> : <> Add New Goal </>}
+            {updateGoalView ? <> Update Goal </> : <> Add New Goal </>}
           </button>
         </fieldset>
       </div>

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { GoalContext } from "./GoalProvider";
 
 export const GoalView = () => {
-  const { goal, setUpdateGoalView, updateGoalView, setGoalToUpate, setShowGoalForm } =
+  const { goal, setUpdateGoalView, updateGoalView, setGoalToUpdate, setShowGoalForm } =
     useContext(GoalContext);
   const shortenedDate = (goal) => {
     return <>{new Date(`${goal.creation_date}`).toString()}</>;
@@ -25,9 +25,9 @@ export const GoalView = () => {
           <button
             onClick={(event) => {
               event.preventDefault();
-              setUpdateGoalView(!updateGoalView); //sets to true will + need false placement
+              setUpdateGoalView(true); //sets to true will + need false placement
               setShowGoalForm(true) //opens form
-              setGoalToUpate(goal); //sends goal obj to goalToUpdate placement
+              setGoalToUpdate(goal); //sends goal obj to goalToUpdate placement
             }}
           >
             ⚙️
