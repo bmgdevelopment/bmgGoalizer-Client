@@ -8,20 +8,43 @@ export const GoalForm = () => {
     setUpdateGoalView, goalToUpdate } = useContext(GoalContext);
   const { folders} = useContext(FolderContext)
   const goalId = null //Need to change goalId for updateGoal
-  const [goal, setGoal] = useState({
-      creator: parseInt(localStorage.getItem("goalizer_user_id")),
-      title: '',
-      description: '',
-      creation_date: new Date(),
-      folder: '',
-      is_complete: '',
-      is_favorite: ''
-  })
+  // const [goal, setGoal] = useState({
+  //   creator: parseInt(localStorage.getItem("goalizer_user_id")),
+  //   title: '',
+  //   description: '',
+  //   creation_date: new Date(),
+  //   folder: '',
+  //   is_complete: '',
+  //   is_favorite: ''
+  // })
+  
+  const goalState = updateGoalView 
+  ? goalToUpdate 
+  // ? {
+  //   creator: parseInt(localStorage.getItem("goalizer_user_id")),
+  //   title: goalToUpdate.title,
+  //   description: goalToUpdate.description,
+  //   creation_date: goalToUpdate.creation_date,
+  //   folder: goalToUpdate.folder,
+  //   is_complete: goalToUpdate.is_complete,
+  //   is_favorite: goalToUpdate.is_favorite
+  // }
+  : {
+    creator: parseInt(localStorage.getItem("goalizer_user_id")),
+    title: '',
+    description: '',
+    creation_date: new Date(),
+    folder: '',
+    is_complete: '',
+    is_favorite: ''
+}
+  const [goal, setGoal] = useState(goalState)
 
-  useEffect(() => {
-    if (updateGoalView) {
-      setGoal(goalToUpdate)
-    }});
+  // useEffect(() => {
+  // if (updateGoalView) {
+  //   setGoal(goalToUpdate)
+  //     }
+  // });
 
   console.log('Update goal view status: ', updateGoalView)
   console.log('Update goal to update: ', goalToUpdate)
@@ -29,19 +52,19 @@ export const GoalForm = () => {
 
   const handleControlledInputChange = e => {
     
-    // const newGoal = {...goal}
-    // newGoal[e.target.name] = e.target.value
-    // setGoal(newGoal)
+    const newGoal = {...goal}
+    newGoal[e.target.name] = e.target.value
+    setGoal(newGoal)
 
-      if (updateGoalView) {
-        const updatingGoal = {...goalToUpdate}
-        updatingGoal[e.target.name] = e.target.value
-        setGoal(updatingGoal)
-      } else {
-        const newGoal = {...goal}
-        newGoal[e.target.name] = e.target.value
-        setGoal(newGoal)
-      }
+      // if (updateGoalView) {
+      //   const updatingGoal = {...goal}
+      //   updatingGoal[e.target.name] = e.target.value
+      //   setGoal(updatingGoal)
+      // } else {
+      //   const newGoal = {...goal}
+      //   newGoal[e.target.name] = e.target.value
+      //   setGoal(newGoal)
+      // }
   }
 
   const handleSaveGoal = () => {
@@ -82,17 +105,21 @@ export const GoalForm = () => {
   }
 
   const handleUpdateGoal = () => {
-      
-    if (goal.title && goal.description
-      && goal.folder && goal.is_complete.length && goal.is_favorite.length ) {
+      console.log('Updating with new info here: ', goal)
+    // if (goal.title && goal.description
+    //   && goal.folder && goal.is_complete.length && goal.is_favorite.length ) {
+    if (goal?.id) {
         
         if (showGoalForm) {
           setShowGoalForm(false);
         }
+
+        setUpdateGoalView(false);
         
         window.alert(`Your goal entitled "${goal.title}" has been updated!`)
 
        updateGoal({
+        //  id: goal.id,
          creator: goal.creator,
          title: goal.title,
          description: goal.description,
