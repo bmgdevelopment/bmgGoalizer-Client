@@ -3,7 +3,7 @@ import { GoalContext } from "./GoalProvider";
 import { FolderContext } from "../folder/FolderProvider";
 
 export const GoalForm = () => {
-  const { addGoal, updateGoal, getGoals, setAddNewGoal, setGoalCreated, goalCreated } = useContext(GoalContext);
+  const { addGoal, updateGoal, getGoals, setAddNewGoal, setGoalCreated, goalCreated, showGoalForm, setShowGoalForm } = useContext(GoalContext);
   const { folders} = useContext(FolderContext)
   const goalId = null //Need to change goalId for updateGoal
   const [goal, setGoal] = useState({
@@ -45,7 +45,7 @@ export const GoalForm = () => {
         <fieldset className="">
           <label className="" htmlFor="goalForm">
             {goalId ? (
-              <> Update goal Name </>
+              <> Update Goal Name </>
             ) : (
               <> Add New Goal Title</>
             )}
@@ -151,9 +151,13 @@ export const GoalForm = () => {
               handleSaveGoal();
               setAddNewGoal(false); //should close goalform on applicationview
               setGoalCreated(!goalCreated) //sets goalCreated to true
+              if (showGoalForm) {
+                setShowGoalForm(false);
+              }
+              window.alert(`Your goal entitled "${goal.title}" has been created!`)
             }}
           >
-            {goalId ? <> Update goal </> : <> Add New Goal </>}
+            {goalId ? <> Update Goal </> : <> Add New Goal </>}
           </button>
         </fieldset>
       </div>

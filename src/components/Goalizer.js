@@ -1,6 +1,6 @@
 import React from "react";
 import { ApplicationView } from "./ApplicationView";
-// import { Route, Redirect, useHistory } from "react-router-dom"
+// import { Route } from "react-router-dom"
 // import { ApplicationViews } from "./ApplicationViews"
 // import { NavBar } from "./nav/NavBar"
 // import { Login } from "./auth/Login"
@@ -12,6 +12,8 @@ import "./Goalizer.css";
 export const Goalizer = () => {
   return (
     <>
+    {/* <Route exact path="/">
+    </Route> */}
       <FolderProvider>
         <GoalProvider>
           <ApplicationView />

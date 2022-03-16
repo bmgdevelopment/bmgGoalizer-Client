@@ -10,9 +10,8 @@ export const FolderList = () => {
     getFolders,
     getFolderWithGoals,
     deleteFolder,
-    setFolderCreated
+    setFolderCreated, addNewState, setAddNewState
   } = useContext(FolderContext);
-  const [addNewState, setAddNewState] = useState(false);
 
   useEffect(() => {getFolders()}, []);
 
@@ -55,6 +54,8 @@ export const FolderList = () => {
               onClick={event => {
                 event.preventDefault();
                 deleteFolder(folder);
+                window.alert(`Your folder ${folder.name} has been deleted!`)
+                window.location.reload(true);
               }}
               >🗑</button>
             </div>

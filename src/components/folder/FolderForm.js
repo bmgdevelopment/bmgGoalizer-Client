@@ -1,10 +1,11 @@
 import React, { useContext, useState } from "react";
+// import { useHistory } from "react-router-dom"
 import { FolderContext } from "./FolderProvider";
 
 export const FolderForm = () => {
-  const { addFolder, updateFolder, getFolders, folderCreated, setFolderCreated } = useContext(FolderContext);
+  const { addFolder, updateFolder, getFolders, folderCreated, setFolderCreated, addNewState, setAddNewState } = useContext(FolderContext);
   const folderId = null //NEED TO CHANGE FOLDER ID info for updateFolder
-
+  // const history = useHistory()
 
   const [folder, setFolder] = useState({
       creator: parseInt(localStorage.getItem("goalizer_user_id")),
@@ -83,7 +84,10 @@ export const FolderForm = () => {
             onClick={(event) => {
               event.preventDefault(); // Prevent browser from submitting the form and refreshing the page
               handleSaveFolder();
-              setFolderCreated(true)
+              setFolderCreated(false)
+              setAddNewState(!addNewState);
+              window.alert(`Your folder ${folder.name} has been added!`)
+              // history.push("/")
             }}
           >
             {folderId ? <> Update Folder </> : <> Add New Folder </>}

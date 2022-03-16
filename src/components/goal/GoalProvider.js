@@ -8,6 +8,7 @@ export const GoalProvider = (props) => {
   const [ goalCreated, setGoalCreated ] = useState(false);
   const [ viewGoalForm, setViewGoalForm ] = useState(false);
   const [ showGoalForm, setShowGoalForm ] = useState(false);
+  const [ updateGoalView, setUpdateGoalView ] = useState(false);
 
   const getGoals = () => {
     return fetch("http://localhost:8000/goals", {
@@ -68,7 +69,8 @@ export const GoalProvider = (props) => {
       value={{ goal, setGoal, goals, setGoals, getOneGoal, 
         getGoals, addGoal, updateGoal, deleteGoal, addNewGoal, 
         setAddNewGoal, goalCreated, setGoalCreated, viewGoalForm, 
-        setViewGoalForm, showGoalForm, setShowGoalForm  }}
+        setViewGoalForm, showGoalForm, setShowGoalForm, updateGoalView, 
+        setUpdateGoalView }}
     >
       {props.children}
     </GoalContext.Provider>

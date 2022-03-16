@@ -17,9 +17,6 @@ export const ApplicationView = () => {
   return (
     <>
           <main style={{ margin: "0px" }}>
-            {/* <Route exact path="/">
-          <GoalizerHome />
-        </Route> */}
 
             <div className="topNav">
               {/* ADD GOAL BUTTON MAY GET MOVED */}

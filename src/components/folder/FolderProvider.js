@@ -6,6 +6,8 @@ export const FolderProvider = (props) => {
   const [folders, setFolders] = useState([]);
   const [goalsForFolder, setGoalsForFolder] = useState([]);
   const [folderCreated, setFolderCreated] = useState(false)
+  const [addNewState, setAddNewState] = useState(false);
+
 
   const getFolders = () => {
     return fetch("http://localhost:8000/folders", {
@@ -67,7 +69,7 @@ export const FolderProvider = (props) => {
     <FolderContext.Provider
       value={{
         folders, setFolders, getFolders, getFolderWithGoals, addFolder, updateFolder, deleteFolder, goalsForFolder, 
-        folderCreated, setFolderCreated
+        folderCreated, setFolderCreated, addNewState, setAddNewState
       }}
     >
       {props.children}
