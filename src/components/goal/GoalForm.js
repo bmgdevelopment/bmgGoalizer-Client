@@ -28,56 +28,37 @@ export const GoalForm = () => {
   sit properly in the exact key/value pairs.
 
   3. 'handleUpdateGoal()' is purposely separate form 'handleSaveGoal()'
-
   */
   
   const goalState = updateGoalView 
   ? goalToUpdate 
-  // ? {
-  //   creator: parseInt(localStorage.getItem("goalizer_user_id")),
-  //   title: goalToUpdate.title,
-  //   description: goalToUpdate.description,
-  //   creation_date: goalToUpdate.creation_date,
-  //   folder: goalToUpdate.folder,
-  //   is_complete: goalToUpdate.is_complete,
-  //   is_favorite: goalToUpdate.is_favorite
-  // }
   : {
     creator: parseInt(localStorage.getItem("goalizer_user_id")),
     title: '',
     description: '',
     creation_date: new Date(),
-    folder: '',
+    folder_id: parseInt(''),
+    // folder_id: '',
     is_complete: '',
     is_favorite: ''
 }
   const [goal, setGoal] = useState(goalState)
 
   // console.log('Update goal view status: ', updateGoalView)
-  // console.log('Update goal to update: ', goalToUpdate)
-  // console.log('Update goal: ', goal)
+  console.log('Update goal to update: ', goalToUpdate)
+  console.log('Update goal: ', goal)
 
   const handleControlledInputChange = e => {
-    
     const newGoal = {...goal}
     newGoal[e.target.name] = e.target.value
     setGoal(newGoal)
-
-      // if (updateGoalView) {
-      //   const updatingGoal = {...goal}
-      //   updatingGoal[e.target.name] = e.target.value
-      //   setGoal(updatingGoal)
-      // } else {
-      //   const newGoal = {...goal}
-      //   newGoal[e.target.name] = e.target.value
-      //   setGoal(newGoal)
-      // }
   }
 
   const handleSaveGoal = () => {
-      
+    const folder_id = parseInt(goal.folder_id)
+
     if (goal.title && goal.description
-      && goal.folder && goal.is_complete.length && goal.is_favorite.length ) {
+      && goal.folder_id && goal.is_complete.length && goal.is_favorite.length ) {
         
         if (showGoalForm) {
           setShowGoalForm(false);
@@ -90,7 +71,7 @@ export const GoalForm = () => {
          title: goal.title,
          description: goal.description,
          creation_date: goal.creation_date,
-         folder: goal.folder,
+         folder_id: folder_id,
          is_complete: goal.is_complete,
          is_favorite: goal.is_favorite
      }).then(getGoals)
@@ -101,28 +82,29 @@ export const GoalForm = () => {
 
   const handleUpdateGoal = () => {
       console.log('Updating with new info here: ', goal)
-    // if (goal.title && goal.description
+    // if (goal.title && goal.description 
     //   && goal.folder && goal.is_complete.length && goal.is_favorite.length ) {
     if (goal?.id) {
-        
+
         if (showGoalForm) {
           setShowGoalForm(false);
         }
 
         setUpdateGoalView(false);
+        debugger
+        updateGoal({
+          id: goal.id,
+          creator: goal.creator,
+          title: goal.title,
+          description: goal.description,
+          creation_date: goal.creation_date,
+          folder: parseInt(goal.folder.id),
+          is_complete: goal.is_complete,
+          is_favorite: goal.is_favorite
+      }).then(getGoals)
         
         window.alert(`Your goal entitled "${goal.title}" has been updated!`)
 
-       updateGoal({
-        //  id: goal.id,
-         creator: goal.creator,
-         title: goal.title,
-         description: goal.description,
-         creation_date: goal.creation_date,
-         folder: goal.folder,
-         is_complete: goal.is_complete,
-         is_favorite: goal.is_favorite
-     }).then(getGoals)
     } else {
       window.alert("Please complete the goal form to save!")
     }
@@ -176,18 +158,18 @@ export const GoalForm = () => {
             Folder
           </label>
             <select
-              name="folder"
+              name="folder_id"
               id="goalFolder"
               className=""
               placeholder=""
               required
-              value={updateGoalView ? goal.folder.id : goal.folder}
+              value={updateGoalView ? goal.folder_id : goal.folder_id}
               onChange={handleControlledInputChange}
             >
               <option value="0">Select A Folder</option>
-              { folders?.map(folder => {
+              { folders?.map(event => {
                 return (
-                  <option value={folder.id}>{folder.name}</option>
+                  <option value={event.id}>{event.name}</option>
                 )
               })}
             </select>
@@ -207,6 +189,8 @@ export const GoalForm = () => {
               onChange={handleControlledInputChange}
             >
               <option value="0">Is this goal complete?</option>
+              {/* <option value={updateGoalView ? 'false' :'False'}>Not quite...</option>
+              <option value={updateGoalView ? 'true' : 'True'}>Yes, indeed!</option> */}
               <option value={updateGoalView ? 'false' :'False'}>Not quite...</option>
               <option value={updateGoalView ? 'true' : 'True'}>Yes, indeed!</option>
             </select>

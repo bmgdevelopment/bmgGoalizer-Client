@@ -27,7 +27,16 @@ export const GoalView = () => {
               event.preventDefault();
               setUpdateGoalView(true); //sets to true will + need false placement
               setShowGoalForm(true) //opens form
-              setGoalToUpdate(goal); //sends goal obj to goalToUpdate placement
+              setGoalToUpdate({
+                id: goal.id,
+                creator: goal.creator,
+                title: goal.title,
+                description: goal.description,
+                creation_date: goal.creation_date,
+                folder: goal.folder,
+                is_complete: goal.is_complete,
+                is_favorite: goal.is_favorite
+            }); //sends goal obj to goalToUpdate placement
             }}
           >
             ⚙️
