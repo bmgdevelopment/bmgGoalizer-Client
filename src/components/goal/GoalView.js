@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { GoalContext } from "./GoalProvider";
 
 export const GoalView = () => {
-  const { goal, setUpdateGoalView, updateGoalView, setGoalToUpdate, setShowGoalForm } =
+  const { goal, setUpdateGoalView, setGoalToUpdate, setShowGoalForm, deleteGoal,
+    completeGoal, incompleteGoal, favoriteGoal, unfavoriteGoal } =
     useContext(GoalContext);
   const shortenedDate = (goal) => {
     return <>{new Date(`${goal.creation_date}`).toString()}</>;
@@ -14,6 +15,10 @@ export const GoalView = () => {
         <></>
       ) : (
         <>
+        <div>
+          <button className="">⭐️</button>
+        </div>
+
           <div>
             <p>{goal.title}</p>
             <p>{goal.description}</p>
@@ -33,6 +38,7 @@ export const GoalView = () => {
                 title: goal.title,
                 description: goal.description,
                 creation_date: goal.creation_date,
+                // folder_id: goal.folder.id,
                 folder: goal.folder,
                 is_complete: goal.is_complete,
                 is_favorite: goal.is_favorite
@@ -41,21 +47,18 @@ export const GoalView = () => {
           >
             ⚙️
           </button>
+
+          <button 
+              key={`delete-folder-${goal.id}`}
+              onClick={event => {
+                event.preventDefault();
+                deleteGoal(goal);
+                window.alert(`Your goal ${goal.title} has been deleted!`)
+                window.location.reload(true);
+              }}
+              >🗑</button>
         </>
       )}
     </>
   );
 };
-
-{
-  /* 
-        Click button, open existing goal in GoalForm view 
-        - create updateGoalView and setter--- OK
-        - create goalToUpdate and setter--- OK
-        - needs to show form by setUpdateGoalView(!updateGoalView)-- OK
-        - invokes setGoalToUpdate(goal)
-        - ternary for goalform with goalToUpdate obj filled ( updateGoalView ? setGoal(goalToUpdate))
-        - have goalform ternary for updateGoalView to show goal form
-        - goal info should be already input from the set taking
-        */
-}

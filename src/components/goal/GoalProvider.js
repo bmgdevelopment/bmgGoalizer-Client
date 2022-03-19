@@ -64,13 +64,61 @@ export const GoalProvider = (props) => {
     }).then(getGoals);
   };
 
+   const completeGoal = goal => {
+  return fetch(`http://localhost:8000/goals/${goal.id}/complete`, {
+    method: "PUT",
+    headers: {
+        "Authorization": `Token ${localStorage.getItem("rare_user_id")}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(goal)
+  })
+      .then(getGoals)
+}
+
+   const incompleteGoal = goal => {
+  return fetch(`http://localhost:8000/goals/${goal.id}/incomplete`, {
+    method: "PUT",
+    headers: {
+        "Authorization": `Token ${localStorage.getItem("rare_user_id")}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(goal)
+  })
+      .then(getGoals)
+}
+
+   const favoriteGoal = goal => {
+  return fetch(`http://localhost:8000/goals/${goal.id}/favorite`, {
+    method: "PUT",
+    headers: {
+        "Authorization": `Token ${localStorage.getItem("rare_user_id")}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(goal)
+  })
+      .then(getGoals)
+}
+
+   const unfavoriteGoal = goal => {
+  return fetch(`http://localhost:8000/goals/${goal.id}/unfavorite`, {
+    method: "PUT",
+    headers: {
+        "Authorization": `Token ${localStorage.getItem("rare_user_id")}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(goal)
+  })
+      .then(getGoals)
+}
+
   return (
     <GoalContext.Provider
       value={{ goal, setGoal, goals, setGoals, getOneGoal, 
         getGoals, addGoal, updateGoal, deleteGoal, addNewGoal, 
         setAddNewGoal, viewGoalForm, setViewGoalForm, showGoalForm, 
         setShowGoalForm, updateGoalView, setUpdateGoalView, goalToUpdate, 
-        setGoalToUpdate }}
+        setGoalToUpdate, completeGoal, incompleteGoal, favoriteGoal, unfavoriteGoal }}
     >
       {props.children}
     </GoalContext.Provider>

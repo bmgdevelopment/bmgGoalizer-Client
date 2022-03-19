@@ -39,6 +39,7 @@ export const FolderList = () => {
                   marginRight: "10px",
                 }}
               ></div>
+              
               <button
                 key={folder.id}
                 onClick={(event) => {
@@ -49,6 +50,7 @@ export const FolderList = () => {
               >
                 {folder?.name}
               </button>
+
               <button 
               key={`delete-folder-${folder.id}`}
               onClick={event => {

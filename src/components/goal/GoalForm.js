@@ -7,46 +7,23 @@ export const GoalForm = () => {
      showGoalForm, setShowGoalForm, updateGoalView, 
     setUpdateGoalView, goalToUpdate } = useContext(GoalContext);
   const { folders} = useContext(FolderContext)
-  // const goalId = null //Need to change goalId for updateGoal
-  // const [goal, setGoal] = useState({
-  //   creator: parseInt(localStorage.getItem("goalizer_user_id")),
-  //   title: '',
-  //   description: '',
-  //   creation_date: new Date(),
-  //   folder: '',
-  //   is_complete: '',
-  //   is_favorite: ''
-  // })
-
-  /*
-  // 🙃 🤔 CONTEXT INFO HERE: 
-  1. 'goalToUpdate' object is being set from the GoalView.js. There's a button there that
-  sets 'setGoalToUpdate(goal)' with the currently viewed goal...
-
-  2. 'goalState()' uses the ternary check of 'updateGoalView ? xxx : YYY'.
-  I tried to force the object build within this variable to force the data to 
-  sit properly in the exact key/value pairs.
-
-  3. 'handleUpdateGoal()' is purposely separate form 'handleSaveGoal()'
-  */
   
   const goalState = updateGoalView 
   ? goalToUpdate 
-  : {
-    creator: parseInt(localStorage.getItem("goalizer_user_id")),
-    title: '',
-    description: '',
-    creation_date: new Date(),
-    folder_id: parseInt(''),
-    // folder_id: '',
-    is_complete: '',
-    is_favorite: ''
-}
+  : {}
+  // creator: parseInt(localStorage.getItem("goalizer_user_id")),
+  // title: '',
+  // description: '',
+  // creation_date: new Date(),
+  // folder_id: parseInt(''),
+  // // folder_id: '',
+  // is_complete: '',
+  // is_favorite: ''
   const [goal, setGoal] = useState(goalState)
 
   // console.log('Update goal view status: ', updateGoalView)
-  console.log('Update goal to update: ', goalToUpdate)
-  console.log('Update goal: ', goal)
+  console.log('Goal to update: ', goalToUpdate)
+  // console.log('Update goal: ', goal)
 
   const handleControlledInputChange = e => {
     const newGoal = {...goal}
@@ -56,6 +33,7 @@ export const GoalForm = () => {
 
   const handleSaveGoal = () => {
     const folder_id = parseInt(goal.folder_id)
+    console.log(folder_id)
 
     if (goal.title && goal.description
       && goal.folder_id && goal.is_complete.length && goal.is_favorite.length ) {
@@ -67,16 +45,17 @@ export const GoalForm = () => {
         window.alert(`Your goal entitled "${goal.title}" has been created!`)
 
        addGoal({
-         creator: goal.creator,
+         creator: parseInt(localStorage.getItem("goalizer_user_id")),
          title: goal.title,
          description: goal.description,
-         creation_date: goal.creation_date,
+         creation_date: new Date(),
          folder_id: folder_id,
          is_complete: goal.is_complete,
          is_favorite: goal.is_favorite
      }).then(getGoals)
     } else {
       window.alert("Please complete the goal form to save!")
+      window.location.reload(true);
     }
   };
 
@@ -98,12 +77,13 @@ export const GoalForm = () => {
           title: goal.title,
           description: goal.description,
           creation_date: goal.creation_date,
-          folder: parseInt(goal.folder.id),
+          folder_id: goal.folderId,
           is_complete: goal.is_complete,
           is_favorite: goal.is_favorite
       }).then(getGoals)
         
         window.alert(`Your goal entitled "${goal.title}" has been updated!`)
+        window.location.reload(true);
 
     } else {
       window.alert("Please complete the goal form to save!")
@@ -158,16 +138,17 @@ export const GoalForm = () => {
             Folder
           </label>
             <select
-              name="folder_id"
+              name={updateGoalView ? "folderId" : "folder_id"}
               id="goalFolder"
               className=""
               placeholder=""
               required
-              value={updateGoalView ? goal.folder_id : goal.folder_id}
+              value={updateGoalView ? goal?.folder.id : goal.folder_id}
               onChange={handleControlledInputChange}
             >
               <option value="0">Select A Folder</option>
               { folders?.map(event => {
+                // console.log(folders)
                 return (
                   <option value={event.id}>{event.name}</option>
                 )
