@@ -38,8 +38,8 @@ export const GoalView = () => {
                 title: goal.title,
                 description: goal.description,
                 creation_date: goal.creation_date,
-                // folder_id: goal.folder.id,
-                folder: goal.folder,
+                // folder_id: goal.folder.id, //folder id is INCORRECT to send
+                // folder: goal.folder.id, //whole folder is INCORRECT to send
                 is_complete: goal.is_complete,
                 is_favorite: goal.is_favorite
             }); //sends goal obj to goalToUpdate placement
