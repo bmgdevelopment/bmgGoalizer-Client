@@ -31,10 +31,10 @@ export const FolderForm = () => {
  
   return (
       <> {folderCreated ? '' :
-    <form className="">
+    <form className="folderForm">
       <div className="">
         <fieldset className="">
-          <label className="" htmlFor="folderForm">
+          <label className="newFolderName labelText" htmlFor="folderForm">
             {folderId ? (
               <> Update Folder Name </>
             ) : (
@@ -48,6 +48,9 @@ export const FolderForm = () => {
             className=""
             placeholder=""
             required
+            rows={1}
+            minLength={1}
+            maxLength={16}
             autoFocus
             value={folder.name}
             onChange={handleControlledInputChange}
@@ -55,7 +58,7 @@ export const FolderForm = () => {
         </fieldset>
 
         <fieldset className="">
-          <label className="" htmlFor="itemType">
+          <label className="labelText labelColorChoice" htmlFor="itemType">
             Label Color
           </label>
             <select
@@ -80,7 +83,7 @@ export const FolderForm = () => {
       <div className="">
         <fieldset className="">
           <button
-            className=""
+            className="confirmAddFolderBtn"
             onClick={(event) => {
               event.preventDefault(); // Prevent browser from submitting the form and refreshing the page
               handleSaveFolder();

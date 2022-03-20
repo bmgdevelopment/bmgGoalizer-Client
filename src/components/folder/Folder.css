@@ -49,8 +49,14 @@
     color: darkgray;
     border: none;
     background: none;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
+    transition: .5s;
+}
+
+.addFolderButton:hover {
+    transform: scale(1.01);
+    color: blue;
 }
 
 /* FOLDER ADD FORM / CANCEL FORM */
@@ -61,4 +67,71 @@
     margin-left: 180px;
     color: gray;
     font-size: 18px;
+    transition: .5s;
+}
+
+.folderCancelBtn:hover {
+    transform: scale(1.2);
+    color: red;
+}
+
+/* FOLDER FORM */
+.folderForm {
+    border: none;
+    background: none;
+}
+
+.folderForm fieldset {
+    border: none;
+    background: none;
+}
+
+.newFolderName, .labelText {
+    color: blue;
+}
+
+.folderForm textarea {
+    border: none;
+    border-bottom: 1px solid blue;
+    background: none;
+    margin-top: 3px;
+    align-items: baseline;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    height: 20px;
+    padding-bottom: 0px;
+    width: 100%;
+}
+
+.labelColorChoice {
+    margin-bottom: 5px;
+}
+
+#folderColor {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid blue;
+    background: none;
+    margin-top: 15px;
+    font-size: 14px;
+    height: 20px;
+}
+
+.confirmAddFolderBtn {
+    height: 30px;
+    width: 100%;
+    border: 2px solid blue;
+    color: blue;
+    background: none;
+    margin-top: 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: .5s;
+}
+
+.confirmAddFolderBtn:hover {
+    color: white;
+    background: blue;
+    border: 2px solid blue;
+    transform: scale(1.02);
 }
