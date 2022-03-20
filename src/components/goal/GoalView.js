@@ -9,7 +9,9 @@ export const GoalView = () => {
   const { goaltags, getGoalTags, setGoalTags } = useContext(GoalTagContext)
   const { tags, getTags } = useContext(TagContext)
 
-  useEffect(() => getGoalTags().then(res => setGoalTags(res)), [])
+  useEffect(() => getGoalTags(), [])
+  // useEffect(() => getGoalTags()
+  // .then(res => setGoalTags(res)), [])
   console.log('Goaltags here :', goaltags)
 
   useEffect(() => getTags(), [])

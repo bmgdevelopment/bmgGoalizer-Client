@@ -9,11 +9,6 @@ export const GoalList = () => {
 
   useEffect(() => goalsForFolder);
   useEffect(() => showGoalForm);
-  // useEffect(() => getOneGoal());
-  // Need to refresh goals for folder
-  // useEffect(() => {
-  //   getFolderWithGoals().then((data) => setGoalsForFolder(data))
-  // }, []);
 
   const goalsMapped = () => {
     

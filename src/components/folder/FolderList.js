@@ -19,14 +19,18 @@ export const FolderList = () => {
 
   return (
     <>
-      <h1>Folder List</h1>
+      <h2>Goal Folders</h2>
       { folders?.map((folder) => {
         return (
           <>
             <div
               key={`label-${folder.id}`}
               className="folder-color-label"
-              style={{ display: "flex" }}
+              style={{ 
+                display: "flex",
+                alignItems: 'center',
+                marginBottom: '15px' 
+              }}
             >
               <div
                 key={`color-${folder.id}`}
@@ -42,6 +46,13 @@ export const FolderList = () => {
               
               <button
                 key={folder.id}
+                className="folderLabels"
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '17px',
+                  cursor: 'pointer'
+                }}
                 onClick={(event) => {
                   event.preventDefault();
                   getFolderWithGoals(folder);
@@ -52,6 +63,13 @@ export const FolderList = () => {
               </button>
 
               <button 
+              style={{
+                color: 'gray',
+                border: 'none',
+                background: 'none',
+                fontSize: '16px',
+                cursor: 'pointer'
+              }}
               key={`delete-folder-${folder.id}`}
               onClick={event => {
                 event.preventDefault();

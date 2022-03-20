@@ -2,45 +2,67 @@
     /* border: 2px solid orange; */
     display: flex;
     flex-direction: row;
+    height: 100vh;
 }
+/* 
+.profilePane {
+    width: 100vh;
+} */
 
 .remainingPane {
     width: 100vw;
+    height: 100vh;
 }
 
 .topNav {
-    display: block;
-    width: 100vw;
+    display: flex;
+    justify-content: space-between;
     margin-left: 150px;
-    height: 100px;
+    height: 80px;
     background-color: white;
-    /* border: 2px solid blue; */
+    border-bottom: 1px solid lightgray;
     position: fixed;
-    /* z-index: 100; */
     right: 0px;
     left: 0px;
     top: 0px;
 }
 
+.logo {
+        padding-left: 30px;
+        font-size: 2.5em;
+        display: flex;
+        align-content: space-around;
+        align-items: center;
+}
+
+.addGoalButton {
+    height: 100%;
+    border: 1px solid white;
+    background-color: rgb(65, 64, 64);
+    font-size: 70px;
+    width: 76px;
+    color: white;
+}
+
 .containFourColumns {
     display: flex;
-    margin-top: 103px;
-    height: 87vh;
+    margin-top: 80px;
+    height: 90vh;
 }
 
 .column2, .column3 {
-    /* position:  */
-    width: 450px;
+    width: 300px;
     height: 100%;
     display: flex;
-    border: 2px solid purple;
+    border: 1px solid lightgray;
     flex-direction: column;
+    padding: 5px 20px;
 }
 
 .column1 {
     width: 150px;
     /* border: 2px solid lightblue; */
-    background-color: lightblue;
+    background-color: rgb(65, 64, 64);
     height: 100%;
 }
 

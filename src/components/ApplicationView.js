@@ -26,20 +26,19 @@ export const ApplicationView = () => {
 
         <div className="remainingPane">
           <div className="topNav">
-            {/* ADD GOAL BUTTON MAY GET MOVED */}
+            <h1 className="logo" >goalizer 🎯</h1>
             <button
+            className="addGoalButton"
               onClick={(event) => {
                 event.preventDefault();
                 setShowGoalForm(!showGoalForm); //sets to true and opens goal form...need
               }}
             >
-              + Add Goal
+              +
             </button>
           </div>
 
           <div className="containFourColumns">
-            {/* PROFILE COLUMN
-          <div className="column1">{/* MyProfileView </div> */}
 
             {/* FOLDER LIST COLUMN */}
             <div className="column2">
