@@ -70,21 +70,6 @@ export const ApplicationView = () => {
               ) : (
                 ""
               )}
-              {/* {updateGoalView ? (
-                  <>
-                    <GoalForm />
-                    <button
-                      onClick={(event) => {
-                        event.preventDefault();
-                        setUpdateGoalView(false);
-                      }}
-                    >
-                      Cancel Update Goal Form
-                    </button>
-                  </>
-                ) : (
-                  ""
-                )} */}
 
               {showGoalForm === false ? <GoalView /> : ""}
 

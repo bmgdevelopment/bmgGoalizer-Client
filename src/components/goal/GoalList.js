@@ -80,7 +80,11 @@ export const GoalList = () => {
       {goalsForFolder.length > 0 ? (
         goalsMapped()
       ) : (
-        <div>{"No goals yet, please create one!"}</div>
+        <div style={{
+          textAlign: 'center',
+          paddingTop: '20px',
+          color: 'gray'
+        }}>{"No goals yet, please create one!"}</div>
       )}
     </>
   );
