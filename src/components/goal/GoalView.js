@@ -43,7 +43,7 @@ export const GoalView = () => {
             <div
               className="oneGoalMainPane"
               style={{
-                width: "20px",
+                margin: "20px",
                 width: "97%",
                 display: "flex",
                 flexDirection: "column",
@@ -66,7 +66,7 @@ export const GoalView = () => {
                 </div>
                 <div
                   className="oneGoalTitle"
-                  style={{ fontSize: "35px", fontWeight: "bold"}}
+                  style={{ fontSize: "35px", fontWeight: "bold", color: 'rgb(58, 58, 58)'}}
                 >
                   <div style={{display: 'flex'}}>
                     {goal.title} 
@@ -83,6 +83,7 @@ export const GoalView = () => {
                   marginBottom: "20px",
                   fontSize: "18px",
                   minHeight: "400px",
+                  color: 'rgb(58, 58, 58)'
                 }}
               >
                 {goal.description}
@@ -112,10 +113,43 @@ export const GoalView = () => {
                 </div>
               </div>
 
-              <div className="oneGoalEditWrapper" style={{}}></div>
+              <div className="oneGoalEditWrapper" style={{ marginTop: '60px'}}>
+                <div className="oneGoalEditDiv" style={{display: 'flex', justifyContent: 'flex-end'}}>
+                <button
+                  className="oneGoalEditBtn"
+                  onClick={(event) => {
+                  event.preventDefault();
+                  setUpdateGoalView(true); //sets to true will + need false placement
+                  setShowGoalForm(true) //opens form
+                  setGoalToUpdate({
+                    id: goal.id,
+                    creator: goal.creator,
+                    title: goal.title,
+                    description: goal.description,
+                    creation_date: goal.creation_date,
+                    is_complete: goal.is_complete,
+                    is_favorite: goal.is_favorite
+                }); //sends goal obj to goalToUpdate placement
+                }}
+          >
+            ⚙️
+          </button>
+
+          <button 
+              key={`delete-folder-${goal.id}`}
+              className="oneGoalEditBtn"
+              onClick={event => {
+                event.preventDefault();
+                deleteGoal(goal);
+                window.alert(`Your goal entitled "${goal.title}" has been deleted!`)
+                window.location.reload(true);
+              }}
+              >🗑</button> 
+                </div>
+              </div>
             </div>
             <div
-              className="oneGoalColorStrip"
+              className="oneGoalColorStrip "
               style={{
                 width: "20px",
                 height: "90vh",
@@ -126,19 +160,7 @@ export const GoalView = () => {
 
           {/* ------- OLD -------- */}
           {/*         
-        <div>
-          {goal.is_complete && <p style={{color: 'gold', fontSize: '25px', border:'none', background: 'none', cursor: 'pointer'}}>🎯</p>}
-          {goal.is_favorite && <p style={{color: 'gold', fontSize: '25px', border:'none', background: 'none', cursor: 'pointer'}}>⭐️</p>}
-
-        </div>
-
-          <div>
-          
-            <p>{shortenedDate(goal)}</p>
-            <p>{goal.is_complete ? "Is complete" : "Is not complete"}</p>
-            <p>{goal.is_favorite ? "Is favorite" : "Is not favorite"}</p>
-          </div>
-
+      
           <button
             onClick={(event) => {
               event.preventDefault();

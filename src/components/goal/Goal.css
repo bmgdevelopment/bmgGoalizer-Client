@@ -91,3 +91,16 @@ button.oneGoalBtn:hover {
 /* ------------------------------------ */
 
 /* ONE GOAL VIEW CSS BELOW */
+.oneGoalEditBtn {
+    font-size: 25px; 
+    margin-left: 15px;
+    border: none;
+    background: none;
+    opacity: 0.6;
+    transition: 0.5s;
+}
+
+.oneGoalEditBtn:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}
