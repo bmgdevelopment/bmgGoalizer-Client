@@ -1,0 +1,56 @@
+/* ONE GOAL BTN */
+button.oneGoalBtn {
+    background: lightgray;
+    transition: .5s;
+}
+
+button.oneGoalBtn:hover {
+    background: none;
+}
+
+/* ONE GOAL WRAPPER */
+.goalWrapper {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px;
+    align-items: center;
+}
+
+/* GOAL DATE */
+.goalDateWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.goalMonth {
+    margin: 0px;
+    font-size: 30px;
+}
+
+.goalDay {
+    margin: 0px;
+    font-size: 30px;
+}
+
+/* GOAL DETAILWRAPPER */
+.goalDetailWrapper {
+    border: 2px solid red;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 10px;
+}
+
+.goalTitleBold {
+    font-size: 16px;
+    border: 1px solid blue;
+    font-weight: bold;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+

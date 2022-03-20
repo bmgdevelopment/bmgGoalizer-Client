@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { GoalContext } from "./GoalProvider";
 import { FolderContext } from "../folder/FolderProvider";
 
@@ -8,17 +8,13 @@ export const GoalForm = () => {
     setUpdateGoalView, goalToUpdate } = useContext(GoalContext);
   const { folders} = useContext(FolderContext)
   
-  const goalState = updateGoalView 
-  ? goalToUpdate 
-  : {}
-
+  const goalState = updateGoalView ? goalToUpdate : {};
   const [goal, setGoal] = useState(goalState)
 
   const handleControlledInputChange = e => {
     const newGoal = {...goal}
     newGoal[e.target.name] = e.target.value
     setGoal(newGoal)
-    console.log('Handling change input', goal)
   }
 
   const handleSaveGoal = () => {
@@ -32,26 +28,23 @@ export const GoalForm = () => {
           setShowGoalForm(false);
         }
         
+        addGoal({
+          creator: parseInt(localStorage.getItem("goalizer_user_id")),
+          title: goal.title,
+          description: goal.description,
+          creation_date: new Date(),
+          folder_id: folder_id,
+          is_complete: goal.is_complete,
+          is_favorite: goal.is_favorite
+        }).then(getGoals)
+        window.location.reload(true);
         window.alert(`Your goal entitled "${goal.title}" has been created!`)
-
-       addGoal({
-         creator: parseInt(localStorage.getItem("goalizer_user_id")),
-         title: goal.title,
-         description: goal.description,
-         creation_date: new Date(),
-         folder_id: folder_id,
-         is_complete: goal.is_complete,
-         is_favorite: goal.is_favorite
-     }).then(getGoals)
     } else {
       window.alert("Please complete the goal form to save!")
-      window.location.reload(true);
     }
   };
 
   const handleUpdateGoal = () => {
-    // if (goal.title && goal.description 
-    //   && goal.folder && goal.is_complete !== 0 && goal.is_favorite !== 0  ) {
     if (goal?.id) {
 
         if (showGoalForm) {
@@ -69,8 +62,8 @@ export const GoalForm = () => {
           is_favorite: goal.is_favorite === "true" ? true : false
       })
         
-        window.alert(`Your goal entitled "${goal.title}" has been updated!`)
         window.location.reload(true);
+        window.alert(`Your goal entitled "${goal.title}" has been updated!`)
 
     } else {
       window.alert("Please complete the goal form to save!")
