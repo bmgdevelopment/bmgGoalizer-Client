@@ -2,6 +2,8 @@ import React from "react";
 import { ApplicationView } from "./ApplicationView";
 import { GoalProvider } from "./goal/GoalProvider";
 import { FolderProvider } from "./folder/FolderProvider";
+import { TagProvider } from "./tag/TagProvider";
+import { GoalTagProvider } from "./goaltag/GoalTagProvider";
 // import { Login } from "./auth/Login"
 // import { Register } from "./auth/Register"
 import "./Goalizer.css";
@@ -9,13 +11,17 @@ import "./Goalizer.css";
 export const Goalizer = () => {
   return (
     <>
- 
-      <FolderProvider>
-        <GoalProvider>
-          <ApplicationView />
-        </GoalProvider>
-      </FolderProvider>
+    <GoalTagProvider>
+      <TagProvider>
+        <FolderProvider>
+          <GoalProvider>
+            <ApplicationView />
+          </GoalProvider>
+        </FolderProvider>
+      </TagProvider>
+    </GoalTagProvider>
     </>
+
     /*
      const history = useHistory()
         return(
