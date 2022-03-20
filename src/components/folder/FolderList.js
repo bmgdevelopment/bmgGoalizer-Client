@@ -19,40 +19,26 @@ export const FolderList = () => {
 
   return (
     <>
-      <h2>Goal Folders</h2>
+      <h2 className="goalFolderLabel">Goal Folders</h2>
       { folders?.map((folder) => {
         return (
           <>
             <div
               key={`label-${folder.id}`}
               className="folder-color-label"
-              style={{ 
-                display: "flex",
-                alignItems: 'center',
-                marginBottom: '15px' 
-              }}
             >
               <div
                 key={`color-${folder.id}`}
                 className="folder-color"
                 style={{
-                  height: "10px",
-                  width: "10px",
                   border: `2px solid ${folder.color}`,
                   backgroundColor: `${folder.color}`,
-                  marginRight: "10px",
                 }}
               ></div>
               
               <button
                 key={folder.id}
                 className="folderLabels"
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  fontSize: '17px',
-                  cursor: 'pointer'
-                }}
                 onClick={(event) => {
                   event.preventDefault();
                   getFolderWithGoals(folder);
@@ -63,13 +49,7 @@ export const FolderList = () => {
               </button>
 
               <button 
-              style={{
-                color: 'gray',
-                border: 'none',
-                background: 'none',
-                fontSize: '16px',
-                cursor: 'pointer'
-              }}
+              className="folderDeleteButton"
               key={`delete-folder-${folder.id}`}
               onClick={event => {
                 event.preventDefault();
@@ -83,35 +63,34 @@ export const FolderList = () => {
         );
       })}
       <br />
-      <hr style={{ color: "gray", width: "150px" }} />
+      <hr className="folderLine" style={{ color: "lightgray", width: "175px" }} />
       <br />
 
-      <div
-        className="folder-addition"
-        style={{ display: "flex", justifyContent: "center" }}
-      >
+      <div className="folder-addition">
         {!addNewState ? (
           <>
             <button
+              className="addFolderButton"
               onClick={(event) => {
                 event.preventDefault();
                 setAddNewState(!addNewState);
                 setFolderCreated(false);
               }}
             >
-              + Add Folder
+              + add folder
             </button>
           </>
         ) : (
           <>
             <button
+              className="folderCancelBtn"
               onClick={(event) => {
                 event.preventDefault();
                 setAddNewState(!addNewState);
                 setFolderCreated(false);
               }}
             >
-              Cancel
+              X
             </button>
           </>
         )}

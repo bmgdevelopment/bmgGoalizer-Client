@@ -42,7 +42,9 @@ export const ApplicationView = () => {
 
             {/* FOLDER LIST COLUMN */}
             <div className="column2">
+              <div className="centerColumn2">
               <FolderList />
+                </div>
             </div>
 
             {/* GOAL LIST COLUMN */}

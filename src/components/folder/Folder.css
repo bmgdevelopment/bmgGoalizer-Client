@@ -1,0 +1,64 @@
+/* GOAL FOLDERS H2 */
+.goalFolderLabel {
+    color: rgb(58, 58, 58);
+}
+
+/* FOLDER NAME COLORS & LABELS */
+.folder-color-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-left: 10px; 
+}
+
+.folder-color {
+    height: 10px;
+    width: 10px;
+    margin-right: 10px;
+}
+
+.folderLabels {
+    background: none;
+    border: none;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+/* FOLDER DELETE BTN */
+.folderDeleteButton {
+    color: gray;
+    border: none;
+    background: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* FOLDER LINE */
+.folderLine {
+    color: lightgray;
+    width: 175px;
+}
+
+/* FOLDER ADDITION BTN */
+.folder-addition {
+    display: flex;
+    justify-content: center;
+}
+
+.addFolderButton {
+    color: darkgray;
+    border: none;
+    background: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* FOLDER ADD FORM / CANCEL FORM */
+.folderCancelBtn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-left: 180px;
+    color: gray;
+    font-size: 18px;
+}

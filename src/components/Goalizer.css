@@ -4,10 +4,6 @@
     flex-direction: row;
     height: 100vh;
 }
-/* 
-.profilePane {
-    width: 100vh;
-} */
 
 .remainingPane {
     width: 100vw;
@@ -51,7 +47,7 @@
 }
 
 .column2, .column3 {
-    width: 300px;
+    width: 360px;
     height: 100%;
     display: flex;
     border: 1px solid lightgray;
@@ -64,6 +60,11 @@
     /* border: 2px solid lightblue; */
     background-color: rgb(65, 64, 64);
     height: 100%;
+}
+
+.centerColumn2 {
+    display: flex;
+    flex-direction: column;
 }
 
 .column4 {
