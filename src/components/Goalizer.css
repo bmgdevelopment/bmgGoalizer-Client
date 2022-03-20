@@ -47,7 +47,7 @@
     height: 90vh;
 }
 
-.column2, .column3 {
+.column2 {
     width: 400px;
     height: 100%;
     display: flex;
@@ -55,15 +55,23 @@
     flex-direction: column;
 }
 
-.column2 {
-    padding: 5px 20px;
-}
-
 .column1 {
     width: 150px;
     /* border: 2px solid lightblue; */
     background-color: rgb(65, 64, 64);
     height: 100%;
+}
+
+.column2 {
+    padding: 5px 20px;
+}
+
+.column3 {
+    width: 550px;
+    height: 100%;
+    display: flex;
+    border: 1px solid lightgray;
+    flex-direction: column;
 }
 
 .centerColumn2 {

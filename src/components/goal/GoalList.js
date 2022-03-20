@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { FolderContext } from "../folder/FolderProvider";
 import { GoalContext } from "./GoalProvider";
 import { GoalForm } from "./GoalForm";
-import './goal.css'
+import "./goal.css";
 
 export const GoalList = () => {
   const { goalsForFolder } = useContext(FolderContext);
@@ -11,11 +11,25 @@ export const GoalList = () => {
   useEffect(() => goalsForFolder);
   useEffect(() => showGoalForm);
 
+  // const shortenedDate = (goal) => {
+  //   return <>{new Date(`${goal.creation_date}`).toString()}</>;
+  // };
+
+  const shortenedMonth = (goal) => {
+    return <>{new Date(`${goal.creation_date}`).toString().slice(3, 7)}</>;
+  };
+  const shortenedDay = (goal) => {
+    return <>{new Date(`${goal.creation_date}`).toString().slice(7, 10)}</>;
+  };
+  const shortenedDetails = (goal) => {
+    return <>{`${goal.description}`.toString().slice(0, 40)}...</>;
+  };
+
   const goalsMapped = () => {
     return goalsForFolder?.map((goal) => {
       return (
         <button
-        className="oneGoalBtn"
+          className="oneGoalBtn"
           key={goal.id}
           onClick={(event) => {
             event.preventDefault();
@@ -27,56 +41,23 @@ export const GoalList = () => {
         >
           <div className="goalWrapper">
             <div className="goalDateWrapper">
-              <p className="goalMonth"> Mar </p>
-              <p className="goalDay"> 25 </p>
+              <p className="goalMonth"> {shortenedMonth(goal)} </p>
+              <p className="goalDay"> {shortenedDay(goal)} </p>
             </div>
             <div className="goalDetailWrapper">
-              <div className="goalTitleBold">
-                {goal?.title}
+              <div className="goalTitleBold">{goal?.title}</div>
+              <div className="goalDescriptionInfo">
+                {shortenedDetails(goal)}
               </div>
-              <div
-                className="goalDescriptionInfo"
-                style={{ marginBottom: "10px", marginTop: "10px" }}
-              >
-                Details here...
-              </div>
-              <div
-                className="goalCompleteDiv"
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  marginTop: "-18px",
-                }}
-              >
-                <div
-                  className="goalDone"
-                  style={{ fontSize: "20px", right: "10px" }}
-                >
-                  🎯
-                </div>
+              <div className="goalCompleteDiv">
+                  {goal.is_complete && (
+                    <p className="completedGoalIcon"> 🎯 </p>
+                  )}
               </div>
             </div>
           </div>
 
-          <p>{goal?.title}</p>
-          <p>{goal?.description}</p>
-          <p>{shortenedDate(goal)}</p>
-          <p>{goal?.is_complete ? "Is complete" : "Is not complete"}</p>
-          <p>{goal?.is_favorite ? "Is favorite" : "Is not favorite"}</p>
-          {goal.is_complete && (
-            <p
-              style={{
-                color: "gold",
-                fontSize: "25px",
-                border: "none",
-                background: "none",
-                cursor: "pointer",
-              }}
-            >
-              🎯
-            </p>
-          )}
-          {goal.is_favorite && (
+          {/* {goal.is_favorite && (
             <p
               style={{
                 color: "gold",
@@ -88,14 +69,10 @@ export const GoalList = () => {
             >
               ⭐️
             </p>
-          )}
+          )} */}
         </button>
       );
     });
-  };
-
-  const shortenedDate = (goal) => {
-    return <>{new Date(`${goal.creation_date}`).toString()}</>;
   };
 
   return (
