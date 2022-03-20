@@ -86,7 +86,7 @@ export const FolderForm = () => {
               handleSaveFolder();
               setFolderCreated(false)
               setAddNewState(!addNewState);
-              window.alert(`Your folder ${folder.name} has been added!`)
+              window.alert(`Your folder "${folder.name}" has been created, now add goals to it!`)
               window.location.reload(true);
             }}
           >

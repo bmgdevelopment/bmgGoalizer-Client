@@ -11,19 +11,8 @@ export const GoalForm = () => {
   const goalState = updateGoalView 
   ? goalToUpdate 
   : {}
-  // creator: parseInt(localStorage.getItem("goalizer_user_id")),
-  // title: '',
-  // description: '',
-  // creation_date: new Date(),
-  // folder_id: parseInt(''),
-  // // folder_id: '',
-  // is_complete: '',
-  // is_favorite: ''
-  const [goal, setGoal] = useState(goalState)
 
-  // console.log('Update goal view status: ', updateGoalView)
-  console.log('Goal to update: ', goalToUpdate)
-  // console.log('Update goal: ', goal)
+  const [goal, setGoal] = useState(goalState)
 
   const handleControlledInputChange = e => {
     const newGoal = {...goal}
@@ -61,9 +50,8 @@ export const GoalForm = () => {
   };
 
   const handleUpdateGoal = () => {
-      console.log('Updating with new info here: ', goal)
     // if (goal.title && goal.description 
-    //   && goal.folder && goal.is_complete.length && goal.is_favorite.length ) {
+    //   && goal.folder && goal.is_complete !== 0 && goal.is_favorite !== 0  ) {
     if (goal?.id) {
 
         if (showGoalForm) {
@@ -71,21 +59,18 @@ export const GoalForm = () => {
         }
 
         setUpdateGoalView(false);
-        debugger
         updateGoal({
           id: goal.id,
           creator: goal.creator,
           title: goal.title,
           description: goal.description,
           creation_date: goal.creation_date,
-          // folder_id: parseInt(goal.folderId),
-          is_complete: goal.is_complete,
-          is_favorite: goal.is_favorite
+          is_complete: goal.is_complete === "true" ? true : false,
+          is_favorite: goal.is_favorite === "true" ? true : false
       })
-      // }).then(getGoals)
         
         window.alert(`Your goal entitled "${goal.title}" has been updated!`)
-        // window.location.reload(true);
+        window.location.reload(true);
 
     } else {
       window.alert("Please complete the goal form to save!")

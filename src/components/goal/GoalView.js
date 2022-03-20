@@ -1,10 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { GoalContext } from "./GoalProvider";
 
 export const GoalView = () => {
-  const { goal, setUpdateGoalView, setGoalToUpdate, setShowGoalForm, deleteGoal,
-    completeGoal, incompleteGoal, favoriteGoal, unfavoriteGoal } =
+  const { goal, setUpdateGoalView, setGoalToUpdate, setShowGoalForm, deleteGoal } =
     useContext(GoalContext);
+  const { favSwitch, setFavSwitch } = useState(false) // empty star
+
+  
   const shortenedDate = (goal) => {
     return <>{new Date(`${goal.creation_date}`).toString()}</>;
   };
@@ -16,7 +18,10 @@ export const GoalView = () => {
       ) : (
         <>
         <div>
-          <button className="">⭐️</button>
+          {goal.is_complete && <p style={{color: 'gold', fontSize: '25px', border:'none', background: 'none', cursor: 'pointer'}}>🎯</p>}
+          {goal.is_favorite && <p style={{color: 'gold', fontSize: '25px', border:'none', background: 'none', cursor: 'pointer'}}>⭐️</p>}
+          {/* {!goal.is_favorite && <p style={{color: 'gold', fontSize: '25px', border:'none', background: 'none', cursor: 'pointer'}}>☆</p>} */}
+
         </div>
 
           <div>
@@ -53,7 +58,7 @@ export const GoalView = () => {
               onClick={event => {
                 event.preventDefault();
                 deleteGoal(goal);
-                window.alert(`Your goal ${goal.title} has been deleted!`)
+                window.alert(`Your goal entitled "${goal.title}" has been deleted!`)
                 window.location.reload(true);
               }}
               >🗑</button>

@@ -4,11 +4,12 @@ import { GoalContext } from "./GoalProvider";
 import { GoalForm } from "./GoalForm"
 
 export const GoalList = () => {
-  const { goalsForFolder, getFolderWithGoals, setGoalsForFolder } = useContext(FolderContext);
+  const { goalsForFolder} = useContext(FolderContext);
   const { getOneGoal, setShowGoalForm, showGoalForm } = useContext(GoalContext);
 
   useEffect(() => goalsForFolder);
   useEffect(() => showGoalForm);
+  // useEffect(() => getOneGoal());
   // Need to refresh goals for folder
   // useEffect(() => {
   //   getFolderWithGoals().then((data) => setGoalsForFolder(data))
@@ -27,12 +28,15 @@ export const GoalList = () => {
               setShowGoalForm(false);
             }
           }}
-        >
+          >
+          {goal.is_complete && <p style={{color: 'gold', fontSize: '25px', border:'none', background: 'none', cursor: 'pointer'}}>🎯</p>}
+          {goal.is_favorite && <p style={{color: 'gold', fontSize: '25px', border:'none', background: 'none', cursor: 'pointer'}}>⭐️</p>}
           <p>{goal?.title}</p>
           <p>{goal?.description}</p>
           <p>{shortenedDate(goal)}</p>
           <p>{goal?.is_complete ? "Is complete" : "Is not complete"}</p>
           <p>{goal?.is_favorite ? "Is favorite" : "Is not favorite"}</p>
+
         </button>
       );
     });

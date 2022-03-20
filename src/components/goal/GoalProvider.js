@@ -68,7 +68,7 @@ export const GoalProvider = (props) => {
   return fetch(`http://localhost:8000/goals/${goal.id}/complete`, {
     method: "PUT",
     headers: {
-        "Authorization": `Token ${localStorage.getItem("rare_user_id")}`,
+        "Authorization": `Token ${localStorage.getItem("goalizer_user_id")}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(goal)
@@ -80,7 +80,7 @@ export const GoalProvider = (props) => {
   return fetch(`http://localhost:8000/goals/${goal.id}/incomplete`, {
     method: "PUT",
     headers: {
-        "Authorization": `Token ${localStorage.getItem("rare_user_id")}`,
+        "Authorization": `Token ${localStorage.getItem("goalizer_user_id")}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(goal)
@@ -92,7 +92,7 @@ export const GoalProvider = (props) => {
   return fetch(`http://localhost:8000/goals/${goal.id}/favorite`, {
     method: "PUT",
     headers: {
-        "Authorization": `Token ${localStorage.getItem("rare_user_id")}`,
+        "Authorization": `Token ${localStorage.getItem("goalizer_user_id")}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(goal)
@@ -104,7 +104,7 @@ export const GoalProvider = (props) => {
   return fetch(`http://localhost:8000/goals/${goal.id}/unfavorite`, {
     method: "PUT",
     headers: {
-        "Authorization": `Token ${localStorage.getItem("rare_user_id")}`,
+        "Authorization": `Token ${localStorage.getItem("goalizer_user_id")}`,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(goal)

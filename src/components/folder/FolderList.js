@@ -56,7 +56,7 @@ export const FolderList = () => {
               onClick={event => {
                 event.preventDefault();
                 deleteFolder(folder);
-                window.alert(`Your folder ${folder.name} has been deleted!`)
+                window.alert(`Your folder "${folder.name}" has been deleted and so have the goals you have saved within it!`)
                 window.location.reload(true);
               }}
               >🗑</button>
