@@ -22,6 +22,12 @@
     border: none;
     font-size: 17px;
     cursor: pointer;
+    transition: 0.5s;
+}
+
+.folderLabels:hover {
+    transform: scale(1.05);
+    text-emphasis: bold;
 }
 
 /* FOLDER DELETE BTN */
@@ -29,9 +35,22 @@
     color: gray;
     border: none;
     background: none;
+    opacity: 0.2;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.folderDeleteButton:hover {
+    border: none;
+    transform: scale(1.4);
+    background: none;
+    opacity: 0.4;
     font-size: 16px;
     cursor: pointer;
 }
+
+
 
 /* FOLDER LINE */
 .folderLine {
