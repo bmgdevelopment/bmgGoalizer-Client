@@ -8,7 +8,7 @@ export const TagProvider = (props) => {
     return fetch("http://localhost:8000/tags", {
       method: "GET",
       headers: {
-        Authorization: `Token ${localStorage.getItem("tagizer_user_id")}`,
+        Authorization: `Token ${localStorage.getItem("goalizer_user_id")}`,
       },
     })
       .then((res) => res.json())

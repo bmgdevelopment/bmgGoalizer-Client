@@ -4,7 +4,7 @@ import { GoalContext } from "./GoalProvider";
 import { GoalForm } from "./GoalForm"
 
 export const GoalList = () => {
-  const { goalsForFolder} = useContext(FolderContext);
+  const { goalsForFolder } = useContext(FolderContext);
   const { getOneGoal, setShowGoalForm, showGoalForm } = useContext(GoalContext);
 
   useEffect(() => goalsForFolder);

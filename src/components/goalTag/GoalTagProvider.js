@@ -6,10 +6,10 @@ export const GoalTagProvider = (props) => {
   
 
   const getGoalTags = () => {
-    return fetch(`http://localhost:8000/goaltags/`, {
+    return fetch("http://localhost:8000/goaltags", {
       method: "GET",
       headers: {
-        Authorization: `Token ${localStorage.getItem("goaltagizer_user_id")}`,
+        Authorization: `Token ${localStorage.getItem("goalizer_user_id")}`,
       },
     })
       .then((res) => res.json())
@@ -20,7 +20,7 @@ export const GoalTagProvider = (props) => {
     return fetch("http://localhost:8000/goaltags", {
       method: "POST",
       headers: {
-        Authorization: `Token ${localStorage.getItem("goaltagizer_user_id")}`,
+        Authorization: `Token ${localStorage.getItem("goalizer_user_id")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(goaltag),
@@ -32,7 +32,7 @@ export const GoalTagProvider = (props) => {
     return fetch(`http://localhost:8000/goaltags/${goaltag.id}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Token ${localStorage.getItem("goaltagizer_user_id")}`,
+        Authorization: `Token ${localStorage.getItem("goalizer_user_id")}`,
         "Content-Type": "application/json",
       },
     }).then(getGoalTags);

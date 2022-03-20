@@ -1,12 +1,22 @@
+.entireView {
+    /* border: 2px solid orange; */
+    display: flex;
+    flex-direction: row;
+}
+
+.remainingPane {
+    width: 100vw;
+}
+
 .topNav {
     display: block;
     width: 100vw;
-    margin: 0;
+    margin-left: 150px;
     height: 100px;
     background-color: white;
-    border: 2px solid white;
+    /* border: 2px solid blue; */
     position: fixed;
-    z-index: 100;
+    /* z-index: 100; */
     right: 0px;
     left: 0px;
     top: 0px;
@@ -15,24 +25,35 @@
 .containFourColumns {
     display: flex;
     margin-top: 103px;
+    height: 87vh;
 }
 
 .column2, .column3 {
     /* position:  */
-    width: 250px;
-    height: 685px;
+    width: 450px;
+    height: 100%;
     display: flex;
     border: 2px solid purple;
     flex-direction: column;
 }
 
 .column1 {
-    width: 100px;
-    border: 2px solid lightblue;
+    width: 150px;
+    /* border: 2px solid lightblue; */
     background-color: lightblue;
+    height: 100%;
 }
 
 .column4 {
     background-color: lightblue;
-    width: 810px;
+    width: 100%;
 }
+
+.column3 {
+    overflow: scroll;
+}
+
+.column3::-webkit-scrollbar {
+        Display:none;
+}
+

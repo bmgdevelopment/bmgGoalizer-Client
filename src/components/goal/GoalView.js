@@ -1,11 +1,19 @@
 import React, { useContext, useState, useEffect } from "react";
 import { GoalContext } from "./GoalProvider";
+import { GoalTagContext } from "../goaltag/GoalTagProvider";
+import { TagContext } from "../tag/TagProvider";
 
 export const GoalView = () => {
   const { goal, setUpdateGoalView, setGoalToUpdate, setShowGoalForm, deleteGoal } =
     useContext(GoalContext);
-  const { favSwitch, setFavSwitch } = useState(false) // empty star
+  const { goaltags, getGoalTags, setGoalTags } = useContext(GoalTagContext)
+  const { tags, getTags } = useContext(TagContext)
 
+  useEffect(() => getGoalTags().then(res => setGoalTags(res)), [])
+  console.log('Goaltags here :', goaltags)
+
+  useEffect(() => getTags(), [])
+  // console.log('Tags here :', tags)
   
   const shortenedDate = (goal) => {
     return <>{new Date(`${goal.creation_date}`).toString()}</>;
@@ -20,7 +28,6 @@ export const GoalView = () => {
         <div>
           {goal.is_complete && <p style={{color: 'gold', fontSize: '25px', border:'none', background: 'none', cursor: 'pointer'}}>🎯</p>}
           {goal.is_favorite && <p style={{color: 'gold', fontSize: '25px', border:'none', background: 'none', cursor: 'pointer'}}>⭐️</p>}
-          {/* {!goal.is_favorite && <p style={{color: 'gold', fontSize: '25px', border:'none', background: 'none', cursor: 'pointer'}}>☆</p>} */}
 
         </div>
 
@@ -43,8 +50,6 @@ export const GoalView = () => {
                 title: goal.title,
                 description: goal.description,
                 creation_date: goal.creation_date,
-                // folder_id: goal.folder.id, //folder id is INCORRECT to send
-                // folder: goal.folder.id, //whole folder is INCORRECT to send
                 is_complete: goal.is_complete,
                 is_favorite: goal.is_favorite
             }); //sends goal obj to goalToUpdate placement
