@@ -80,16 +80,7 @@ export const GoalView = () => {
       ) : (
         <>
           <div className="oneGoalViewParent" style={{ display: "flex" }}>
-            <div
-              className="oneGoalMainPane"
-              style={{
-                margin: "20px",
-                width: "97%",
-                display: "flex",
-                flexDirection: "column",
-                padding: "20px",
-              }}
-            >
+            <div className="oneGoalMainPane">
               <div className="oneGoalTitleWrapper">
                 <div
                   className="oneGoalIconWrapper"

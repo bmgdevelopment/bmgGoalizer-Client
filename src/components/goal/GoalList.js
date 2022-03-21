@@ -21,8 +21,11 @@ export const GoalList = () => {
   const shortenedDay = (goal) => {
     return <>{new Date(`${goal.creation_date}`).toString().slice(7, 10)}</>;
   };
+  const shortenedTitle = (goal) => {
+    return <>{`${goal.title}`.toString().slice(0, 20)}...</>;
+  };
   const shortenedDetails = (goal) => {
-    return <>{`${goal.description}`.toString().slice(0, 40)}...</>;
+    return <>{`${goal.description}`.toString().slice(0, 70)}...</>;
   };
 
   const goalsMapped = () => {
@@ -45,7 +48,7 @@ export const GoalList = () => {
               <p className="goalDay"> {shortenedDay(goal)} </p>
             </div>
             <div className="goalDetailWrapper">
-              <div className="goalTitleBold">{goal?.title}</div>
+              <div className="goalTitleBold">{shortenedTitle(goal)}</div>
               <div className="goalDescriptionInfo">
                 {shortenedDetails(goal)}
               </div>
