@@ -5,6 +5,7 @@ import { GoalList } from "./goal/GoalList";
 import { GoalView } from "./goal/GoalView";
 import { GoalContext } from "./goal/GoalProvider";
 import { GoalForm } from "./goal/GoalForm";
+import "./goal/goal.css"
 
 export const ApplicationView = () => {
   // const [showHome, setShowHome] = useState(false);
@@ -57,15 +58,18 @@ export const ApplicationView = () => {
             <div className="column4">
               {showGoalForm ? (
                 <>
-                  <GoalForm />
+                <div style={{display: 'flex', justifyContent: 'flex-end'}}>
                   <button
+                  className="cancelGoalForm"
                     onClick={(event) => {
                       event.preventDefault();
                       setShowGoalForm(!showGoalForm);
                     }}
                   >
-                    Cancel Goal Form
+                   Cancel Form
                   </button>
+                </div>
+                  <GoalForm />
                 </>
               ) : (
                 ""

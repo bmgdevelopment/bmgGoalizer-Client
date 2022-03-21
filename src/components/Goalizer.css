@@ -34,12 +34,13 @@
 
 .addGoalButton {
     height: 100%;
-    /* border: 1px solid white; */
-    background-color: rgb(65, 64, 64);
+    border: 1px solid #F8D453;
+    background-color: #F8D453;
+    color: white;
     font-size: 70px;
     width: 76px;
-    color: white;
     cursor: pointer;
+    transition: 0.5s;
 }
 
 .containFourColumns {
@@ -51,7 +52,7 @@
 .column1 {
     width: 80px;
     /* border: 2px solid lightblue; */
-    background-color: rgb(65, 64, 64);
+    background-color: #46CBD4;
     height: 100%;
 }
 

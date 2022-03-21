@@ -91,6 +91,88 @@ button.oneGoalBtn:hover {
 /* ------------------------------------ */
 
 /* ONE GOAL VIEW CSS BELOW */
+.oneGoalMainPane {
+    margin: 20px;
+    width: 97%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* GOAL FORM */
+.goalFieldSet {
+    /* border: 2px solid gold; */
+    border: none;
+    margin-bottom: 20px;
+    display: flex;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-direction: column;
+}
+
+.goalFieldSet label {
+    /* border: 2px solid blue; */
+    font-size: 18px;
+    color: rgb(58, 58, 58);
+    font-weight: bold;
+}
+.goalFieldSet textarea, select {
+    /* border: 2px solid orange; */
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 25px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #46CBD4;
+    background: none;
+    align-items: baseline;
+    padding-left: 5px;
+}
+
+.goalFieldSet select, option {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* ADD/UPDATE BTN FOR GOAL FORM */
+.confirmAddUpdateBtn {
+    height: 40px;
+    width: 100%;
+    border: 2px solid rgb(58, 58, 58);
+    color: rgb(58, 58, 58);
+    background: none;
+    margin-top: 20px;
+    font-size: 18px;
+    border-radius: 20px;
+    transition: .5s;
+}
+
+.confirmAddUpdateBtn:hover {
+    color: white;
+    font-weight: bold;
+    background: #46CBD4;
+    border: 2px solid #46CBD4;
+    transform: scale(1.02);
+    filter: drop-shadow(2px 2px 20px rgba(172, 172, 172, 0.199));
+}
+
+/* CANCEL GOAL FORM */
+.cancelGoalForm {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: gray;
+    margin-right: 25px;
+    margin-top: 25px;
+    font-size: 18px;
+    transition: .5s;
+}
+
+.cancelGoalForm:hover {
+    transform: scale(1.08);
+    color: red;
+}
+
+/* ONE GOAL VIEW EDIT AND DELETE BTNS */
 .oneGoalEditBtn {
     font-size: 25px; 
     margin-left: 15px;
@@ -98,6 +180,13 @@ button.oneGoalBtn:hover {
     background: none;
     opacity: 0.6;
     transition: 0.5s;
+}
+
+.oneGoalForm {
+    margin: 20px;
+    /* padding: 20px; */
+    display: flex;
+    flex-direction: column;
 }
 
 .oneGoalEditBtn:hover {

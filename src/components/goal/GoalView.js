@@ -17,10 +17,8 @@ export const GoalView = () => {
 
   useEffect(() => getGoalTags(), []);
   console.log("Goaltags here :", goaltags);
-  // console.log(goal.folder.color)
 
   useEffect(() => getTags(), []);
-  // console.log('Tags here :', tags)
 
   const shortenedDate = (goal) => {
     return <>{new Date(`${goal.creation_date}`).toString().slice(0,15)}</>;
@@ -51,9 +49,7 @@ export const GoalView = () => {
               }}
             >
               <div
-                className="oneGoalTitleWrapper"
-                style={{}}
-              >
+                className="oneGoalTitleWrapper"              >
                 <div
                   className="oneGoalIconWrapper"
                   style={{
@@ -106,6 +102,7 @@ export const GoalView = () => {
                     }}
                   >
                     Tag Label
+                    {/* NEED TO MAP LABELS THAT MATCH THIS GOAL */}
                   </button>
                 </div>
                 <div className="rightDateDiv" style={{fontSize: '13px', color: 'gray'}}>
@@ -149,7 +146,7 @@ export const GoalView = () => {
               </div>
             </div>
             <div
-              className="oneGoalColorStrip "
+              className="oneGoalColorStrip"
               style={{
                 width: "20px",
                 height: "90vh",
@@ -157,38 +154,6 @@ export const GoalView = () => {
               }}
             ></div>
           </div>
-
-          {/* ------- OLD -------- */}
-          {/*         
-      
-          <button
-            onClick={(event) => {
-              event.preventDefault();
-              setUpdateGoalView(true); //sets to true will + need false placement
-              setShowGoalForm(true) //opens form
-              setGoalToUpdate({
-                id: goal.id,
-                creator: goal.creator,
-                title: goal.title,
-                description: goal.description,
-                creation_date: goal.creation_date,
-                is_complete: goal.is_complete,
-                is_favorite: goal.is_favorite
-            }); //sends goal obj to goalToUpdate placement
-            }}
-          >
-            ⚙️
-          </button>
-
-          <button 
-              key={`delete-folder-${goal.id}`}
-              onClick={event => {
-                event.preventDefault();
-                deleteGoal(goal);
-                window.alert(`Your goal entitled "${goal.title}" has been deleted!`)
-                window.location.reload(true);
-              }}
-              >🗑</button> */}
         </>
       )}
     </>
