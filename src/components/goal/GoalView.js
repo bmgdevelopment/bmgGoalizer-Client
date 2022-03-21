@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { GoalContext } from "./GoalProvider";
 import { GoalTagContext } from "../goaltag/GoalTagProvider";
 import { TagContext } from "../tag/TagProvider";
+import { ProfileContext } from "../auth/AuthProvider";
 import "./goal.css";
 
 export const GoalView = () => {
@@ -14,22 +15,47 @@ export const GoalView = () => {
   } = useContext(GoalContext);
   const { goaltags, getGoalTags, setGoalTags } = useContext(GoalTagContext);
   const { tags, getTags } = useContext(TagContext);
+  const { profile, getProfile } = useContext(ProfileContext);
+
+  const [userGoalTags, setUserGoalTags] = useState([]);
+  const [userGoalTagsMatchGoal, setUserGoalTagsMatchGoal] = useState([]);
 
   useEffect(() => getGoalTags(), []);
-  console.log("Goaltags here :", goaltags);
-
   useEffect(() => getTags(), []);
+  useEffect(() => getProfile(), []);
+  console.log("Profile here :", profile);
+  console.log("goaltags :", goaltags);
+
+  useEffect(() => {
+    if (goaltags) {
+      const filterGoalTags = goaltags?.filter(
+        (goaltag) =>
+          goaltag?.goal?.creator?.id === profile?.goalizeruser?.user?.id
+      );
+      setUserGoalTags(filterGoalTags);
+      console.log("filtered goaltags :", userGoalTags);
+    }
+  }, [goal, goaltags, profile]);
+
+  useEffect(() => {
+    if (userGoalTags) {
+      const filterTagsForGoal = userGoalTags.filter(
+        (userGoalTag) => userGoalTag.goal.id === goal.id
+      );
+      setUserGoalTagsMatchGoal(filterTagsForGoal);
+      console.log("user goaltag match for one goal :", userGoalTagsMatchGoal);
+    }
+  }, [goaltags, userGoalTags, goal]);
+  // b-day goals folder -- title edit title here of travel goal -- look to match goal.id === filtergoaltag.goal.id
 
   const shortenedDate = (goal) => {
-    return <>{new Date(`${goal.creation_date}`).toString().slice(0,15)}</>;
+    return <>{new Date(`${goal.creation_date}`).toString().slice(0, 15)}</>;
   };
 
   const colorState = (goal) => {
     const color = goal.id ? goal.folder.color : "lightgray";
     return color;
   };
-
-  console.log("color state: ", colorState(goal));
 
   return (
     <>
@@ -48,8 +74,7 @@ export const GoalView = () => {
                 padding: "20px",
               }}
             >
-              <div
-                className="oneGoalTitleWrapper"              >
+              <div className="oneGoalTitleWrapper">
                 <div
                   className="oneGoalIconWrapper"
                   style={{
@@ -57,18 +82,51 @@ export const GoalView = () => {
                     justifyContent: "flex-end",
                   }}
                 >
-                  <div className="oneGoalIcons" style={{ fontSize: "35px" }}>
-                  </div>
+                  <div
+                    className="oneGoalIcons"
+                    style={{ fontSize: "35px" }}
+                  ></div>
                 </div>
                 <div
                   className="oneGoalTitle"
-                  style={{ fontSize: "35px", fontWeight: "bold", color: 'rgb(58, 58, 58)'}}
+                  style={{
+                    fontSize: "35px",
+                    fontWeight: "bold",
+                    color: "rgb(58, 58, 58)",
+                  }}
                 >
-                  <div style={{display: 'flex'}}>
-                    {goal.title} 
-                    {goal.is_favorite && (<p style={{ fontSize: "35px", marginLeft: '15px', marginTop: '0px', marginBottom: '0px', padding: 'none !important'}}> ⭐️ </p>)}
-                    {goal.is_complete && ( <p className="" style={{fontSize: "35px", marginLeft: '15px', marginTop: '0px', marginBottom: '0px', padding: 'none !important' }}> 🎯 </p>)} 
-                    </div>
+                  <div style={{ display: "flex" }}>
+                    {goal.title}
+                    {goal.is_favorite && (
+                      <p
+                        style={{
+                          fontSize: "35px",
+                          marginLeft: "15px",
+                          marginTop: "0px",
+                          marginBottom: "0px",
+                          padding: "none !important",
+                        }}
+                      >
+                        {" "}
+                        ⭐️{" "}
+                      </p>
+                    )}
+                    {goal.is_complete && (
+                      <p
+                        className=""
+                        style={{
+                          fontSize: "35px",
+                          marginLeft: "15px",
+                          marginTop: "0px",
+                          marginBottom: "0px",
+                          padding: "none !important",
+                        }}
+                      >
+                        {" "}
+                        🎯{" "}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
 
@@ -79,7 +137,7 @@ export const GoalView = () => {
                   marginBottom: "20px",
                   fontSize: "18px",
                   minHeight: "400px",
-                  color: 'rgb(58, 58, 58)'
+                  color: "rgb(58, 58, 58)",
                 }}
               >
                 {goal.description}
@@ -89,59 +147,85 @@ export const GoalView = () => {
                 <hr style={{ width: "98%", opacity: "0.3" }} />
               </div>
 
-              <div className="oneGoalTagWrapper" style={{paddingTop:'5px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+              <div
+                className="oneGoalTagWrapper"
+                style={{
+                  paddingTop: "5px",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
                 <div className="leftTagDiv">
-                  <button
-                    className="tagLabel"
-                    style={{
-                      padding: "5px 13px",
-                      background: 'none',
-                      border: '1px solid gray',
-                      borderRadius: '3px',
-                      color: 'gray'
-                    }}
-                  >
-                    Tag Label
-                    {/* NEED TO MAP LABELS THAT MATCH THIS GOAL */}
-                  </button>
+                  {userGoalTagsMatchGoal.length &&
+                    userGoalTagsMatchGoal.map((userGoalTagMatch) => {
+                      return (
+                        <>
+                          <button
+                            className="tagLabel"
+                            style={{
+                              padding: "5px 13px",
+                              background: "none",
+                              border: "1px solid gray",
+                              borderRadius: "3px",
+                              color: "gray",
+                              cursor: "pointer"
+                            }}
+                          >
+                            {userGoalTagMatch.tag.label}
+                          </button>
+                        </>
+                      );
+                    })}
                 </div>
-                <div className="rightDateDiv" style={{fontSize: '13px', color: 'gray'}}>
-                Goal created on {shortenedDate(goal)} in your folder {goal.folder.name}
+                <div
+                  className="rightDateDiv"
+                  style={{ fontSize: "13px", color: "gray" }}
+                >
+                  Goal created on {shortenedDate(goal)} in your folder{" "}
+                  {goal.folder.name}
                 </div>
               </div>
 
-              <div className="oneGoalEditWrapper" style={{ marginTop: '60px'}}>
-                <div className="oneGoalEditDiv" style={{display: 'flex', justifyContent: 'flex-end'}}>
-                <button
-                  className="oneGoalEditBtn"
-                  onClick={(event) => {
-                  event.preventDefault();
-                  setUpdateGoalView(true); //sets to true will + need false placement
-                  setShowGoalForm(true) //opens form
-                  setGoalToUpdate({
-                    id: goal.id,
-                    creator: goal.creator,
-                    title: goal.title,
-                    description: goal.description,
-                    creation_date: goal.creation_date,
-                    is_complete: goal.is_complete,
-                    is_favorite: goal.is_favorite
-                }); //sends goal obj to goalToUpdate placement
-                }}
-          >
-            ⚙️
-          </button>
+              <div className="oneGoalEditWrapper" style={{ marginTop: "60px" }}>
+                <div
+                  className="oneGoalEditDiv"
+                  style={{ display: "flex", justifyContent: "flex-end" }}
+                >
+                  <button
+                    className="oneGoalEditBtn"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      setUpdateGoalView(true); //sets to true will + need false placement
+                      setShowGoalForm(true); //opens form
+                      setGoalToUpdate({
+                        id: goal.id,
+                        creator: goal.creator,
+                        title: goal.title,
+                        description: goal.description,
+                        creation_date: goal.creation_date,
+                        is_complete: goal.is_complete,
+                        is_favorite: goal.is_favorite,
+                      }); //sends goal obj to goalToUpdate placement
+                    }}
+                  >
+                    ⚙️
+                  </button>
 
-          <button 
-              key={`delete-folder-${goal.id}`}
-              className="oneGoalEditBtn"
-              onClick={event => {
-                event.preventDefault();
-                deleteGoal(goal);
-                window.alert(`Your goal entitled "${goal.title}" has been deleted!`)
-                window.location.reload(true);
-              }}
-              >🗑</button> 
+                  <button
+                    key={`delete-folder-${goal.id}`}
+                    className="oneGoalEditBtn"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      deleteGoal(goal);
+                      window.alert(
+                        `Your goal entitled "${goal.title}" has been deleted!`
+                      );
+                      window.location.reload(true);
+                    }}
+                  >
+                    🗑
+                  </button>
                 </div>
               </div>
             </div>

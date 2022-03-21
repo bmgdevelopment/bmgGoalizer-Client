@@ -4,6 +4,7 @@ import { GoalProvider } from "./goal/GoalProvider";
 import { FolderProvider } from "./folder/FolderProvider";
 import { TagProvider } from "./tag/TagProvider";
 import { GoalTagProvider } from "./goaltag/GoalTagProvider";
+import { ProfileProvider } from "./auth/AuthProvider";
 // import { Login } from "./auth/Login"
 // import { Register } from "./auth/Register"
 import "./Goalizer.css";
@@ -11,6 +12,7 @@ import "./Goalizer.css";
 export const Goalizer = () => {
   return (
     <>
+    <ProfileProvider>
     <GoalTagProvider>
       <TagProvider>
         <FolderProvider>
@@ -20,6 +22,7 @@ export const Goalizer = () => {
         </FolderProvider>
       </TagProvider>
     </GoalTagProvider>
+    </ProfileProvider>
     </>
 
     /*
