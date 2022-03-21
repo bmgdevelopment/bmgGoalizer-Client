@@ -74,7 +74,7 @@
 
 .addFolderButton:hover {
     transform: scale(1.01);
-    color: red;
+    color: #38a9b1;
 }
 
 /* FOLDER ADD FORM / CANCEL FORM */

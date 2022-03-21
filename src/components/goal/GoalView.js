@@ -13,32 +13,35 @@ export const GoalView = () => {
     setShowGoalForm,
     deleteGoal,
   } = useContext(GoalContext);
-  const { goaltags, getGoalTags, setGoalTags } = useContext(GoalTagContext);
+  const { goaltags, getGoalTags } = useContext(GoalTagContext);
   const { tags, getTags } = useContext(TagContext);
   const { profile, getProfile } = useContext(ProfileContext);
 
   const [userGoalTags, setUserGoalTags] = useState([]);
   const [userGoalTagsMatchGoal, setUserGoalTagsMatchGoal] = useState([]);
+  const [tagsNotUsed, setTagsNotUsed] = useState([]);
 
   useEffect(() => getGoalTags(), []);
   useEffect(() => getTags(), []);
+  console.log('tags : ', tags)
   useEffect(() => getProfile(), []);
-  console.log("Profile here :", profile);
-  console.log("goaltags :", goaltags);
 
+
+  // USE EFFECT CHECKS FOR GOALTAG.GOAL.CREATOR.ID TO MATCH PROFILE.GOALIZER.USER.ID
   useEffect(() => {
-    if (goaltags) {
+    if (goaltags?.length > 0) {
       const filterGoalTags = goaltags?.filter(
         (goaltag) =>
           goaltag?.goal?.creator?.id === profile?.goalizeruser?.user?.id
       );
       setUserGoalTags(filterGoalTags);
-      console.log("filtered goaltags :", userGoalTags);
+      // console.log("filtered goaltags :", userGoalTags);
     }
   }, [goal, goaltags, profile]);
 
+  // USE EFFECT CHECKS FOR GOALTAG.GOAL.ID TO MATCH GOAL.ID
   useEffect(() => {
-    if (userGoalTags) {
+    if (userGoalTags?.length > 0) {
       const filterTagsForGoal = userGoalTags.filter(
         (userGoalTag) => userGoalTag.goal.id === goal.id
       );
@@ -46,7 +49,20 @@ export const GoalView = () => {
       console.log("user goaltag match for one goal :", userGoalTagsMatchGoal);
     }
   }, [goaltags, userGoalTags, goal]);
-  // b-day goals folder -- title edit title here of travel goal -- look to match goal.id === filtergoaltag.goal.id
+
+  // USE EFFECT CHECKS FOR TAGS NOT IN USE FOR GOAL
+  useEffect(() => {
+    if (userGoalTagsMatchGoal?.length > 0 ) {
+      let tagsNotInUse;
+        for (let match of userGoalTagsMatchGoal) {
+            tagsNotInUse = tags.filter(tag => tag.id !== match.tag.id )
+          }
+          setTagsNotUsed(tagsNotInUse)
+          console.log('tags not used', tagsNotUsed)
+    } else {
+      setTagsNotUsed(tags)
+    }
+  }, [userGoalTagsMatchGoal, tags, goal])
 
   const shortenedDate = (goal) => {
     return <>{new Date(`${goal.creation_date}`).toString().slice(0, 15)}</>;
@@ -156,8 +172,9 @@ export const GoalView = () => {
                   justifyContent: "space-between",
                 }}
               >
+                {/* TAG DIV */}
                 <div className="leftTagDiv">
-                  {userGoalTagsMatchGoal.length &&
+                  {userGoalTagsMatchGoal &&
                     userGoalTagsMatchGoal.map((userGoalTagMatch) => {
                       return (
                         <>
@@ -169,6 +186,7 @@ export const GoalView = () => {
                               border: "1px solid gray",
                               borderRadius: "3px",
                               color: "gray",
+                              marginLeft: '5px',
                               cursor: "pointer"
                             }}
                           >
