@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-// import { GoalizerHome } from "./GoalizerHome";
+import React, { useContext, useEffect } from "react";
+import { useHistory } from 'react-router-dom';
 import { FolderList } from "./folder/FolderList";
 import { GoalList } from "./goal/GoalList";
 import { GoalView } from "./goal/GoalView";
@@ -8,9 +8,9 @@ import { GoalForm } from "./goal/GoalForm";
 import "./goal/goal.css"
 
 export const ApplicationView = () => {
-  // const [showHome, setShowHome] = useState(false);
   const { showGoalForm, setShowGoalForm, updateGoalView, setUpdateGoalView } =
     useContext(GoalContext);
+  const history = useHistory()
 
   useEffect(() => showGoalForm);
   useEffect(() => updateGoalView);
@@ -20,8 +20,20 @@ export const ApplicationView = () => {
       <main className="entireView" style={{ margin: "0px", padding: "none" }}>
         <div className="profilePane">
           {/* PROFILE COLUMN */}
-          <div className="column1">{/* MyProfileView */}
-
+          <div className="column1" style={{display: 'flex', justifyContent: 'center', alignItems: 'flex-end'}}>
+            {/* MyProfileView */}
+            
+            {/* For logout */}
+            {(localStorage.getItem("goalizer_user_id") !== null) &&
+                    <button className=""
+                        style={{ color: 'white', border: '1px solid white', textDecoration: 'none', background: 'none', textAlign: 'center', height: '25px', marginBottom: '30px'}}
+                        onClick={() => {
+                            localStorage.removeItem("goalizer_user_id")
+                            history.push({ pathname: "/" })
+                            // history.push({ pathname: "/login" })
+                        }}
+                    >Logout</button>
+                }
           </div>
         </div>
 
@@ -50,7 +62,6 @@ export const ApplicationView = () => {
 
             {/* GOAL LIST COLUMN */}
             <div id="column3" className="column3">
-              {/* <button onClick={() => setShowHome(!showHome)}>Toggle</button> */}
               <GoalList />
             </div>
 
@@ -63,7 +74,8 @@ export const ApplicationView = () => {
                   className="cancelGoalForm"
                     onClick={(event) => {
                       event.preventDefault();
-                      setShowGoalForm(!showGoalForm);
+                      setShowGoalForm(false);
+                      setUpdateGoalView(false);
                     }}
                   >
                    Cancel Form
@@ -77,7 +89,6 @@ export const ApplicationView = () => {
 
               {showGoalForm === false ? <GoalView /> : ""}
 
-              {/* {showHome && <GoalizerHome />} */}
             </div>
           </div>
         </div>

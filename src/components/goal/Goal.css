@@ -103,7 +103,6 @@ button.oneGoalBtn:hover {
 .goalFieldSet {
     /* border: 2px solid gold; */
     border: none;
-    margin-bottom: 20px;
     display: flex;
     font-family: Arial, Helvetica, sans-serif;
     flex-direction: column;
@@ -183,8 +182,7 @@ button.oneGoalBtn:hover {
 }
 
 .oneGoalForm {
-    margin: 20px;
-    /* padding: 20px; */
+    margin: 20px 40px;
     display: flex;
     flex-direction: column;
 }

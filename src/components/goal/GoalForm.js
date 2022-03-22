@@ -122,7 +122,6 @@ export const GoalForm = () => {
                 placeholder="Describe your goal here"
                 required
                 rows={5}
-                autoFocus
                 value={goal.description}
                 onChange={handleControlledInputChange}
               />
