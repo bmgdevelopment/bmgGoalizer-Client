@@ -52,7 +52,7 @@ export const GoalForm = () => {
         is_complete: goal.is_complete,
         is_favorite: goal.is_favorite,
       }).then(getGoals);
-      window.location.reload(true);
+      // window.location.reload(true);
       window.alert(`Your goal entitled "${goal.title}" has been created!`);
     } else {
       window.alert("Please complete the goal form to save!");

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 // import { useHistory } from "react-router-dom"
 import { FolderContext } from "./FolderProvider";
 
@@ -13,6 +13,10 @@ export const FolderForm = () => {
       color: ''
   })
 
+  useEffect(() => {
+      getFolders()
+  }, [addFolder])
+
   const handleControlledInputChange = e => {
       const newFolder = {...folder}
       newFolder[e.target.name] = e.target.value
@@ -20,13 +24,15 @@ export const FolderForm = () => {
   }
 
   const handleSaveFolder = () => {
-      return (folder.id ? 
-      updateFolder :
-      addFolder({
-          creator: folder.creator,
-          name: folder.name,
-          color: folder.color
-      }).then(getFolders))
+   if (folder.name && folder.color) {
+     return (folder.id ? 
+     updateFolder :
+     addFolder({
+         creator: folder.creator,
+         name: folder.name,
+         color: folder.color
+     }).then(getFolders))
+    }
   }
  
   return (
@@ -89,8 +95,8 @@ export const FolderForm = () => {
               handleSaveFolder();
               setFolderCreated(false)
               setAddNewState(!addNewState);
-              window.alert(`Your folder "${folder.name}" has been created, now add goals to it!`)
-              window.location.reload(true);
+              // window.alert(`Your folder "${folder.name}" has been created, now add goals to it!`)
+              // window.location.reload(true);
             }}
           >
             {folderId ? <> Update Folder </> : <> Add New Folder </>}

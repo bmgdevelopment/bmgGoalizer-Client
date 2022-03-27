@@ -23,7 +23,7 @@ export const GoalView = () => {
 
   useEffect(() => getGoalTags(), []);
   useEffect(() => getTags(), []);
-  console.log('tags : ', tags)
+  // console.log('tags : ', tags)
   useEffect(() => getProfile(), []);
 
 
@@ -46,7 +46,7 @@ export const GoalView = () => {
         (userGoalTag) => userGoalTag.goal.id === goal.id
       );
       setUserGoalTagsMatchGoal(filterTagsForGoal);
-      console.log("user goaltag match for one goal :", userGoalTagsMatchGoal);
+      // console.log("user goaltag match for one goal :", userGoalTagsMatchGoal);
     }
   }, [goaltags, userGoalTags, goal]);
 
@@ -230,7 +230,7 @@ export const GoalView = () => {
                       window.alert(
                         `Your goal entitled "${goal.title}" has been deleted!`
                       );
-                      window.location.reload(true);
+                      // window.location.reload(true);
                     }}
                   >
                     🗑

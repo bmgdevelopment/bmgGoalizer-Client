@@ -1,14 +1,15 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { FolderContext } from "../folder/FolderProvider";
 import { GoalContext } from "./GoalProvider";
-import { GoalForm } from "./GoalForm";
 import "./goal.css";
 
-export const GoalList = () => {
+export const GoalList = (props) => {
   const { goalsForFolder } = useContext(FolderContext);
-  const { getOneGoal, setShowGoalForm, showGoalForm } = useContext(GoalContext);
-
-  useEffect(() => goalsForFolder);
+  const { addGoal, deleteGoal, getOneGoal, setShowGoalForm, showGoalForm } = useContext(GoalContext);
+  const { folder } = props
+  console.log('folder from props', props.folder)
+  console.log('folder obj', folder)
+  useEffect(() => goalsForFolder, [ deleteGoal, addGoal ]);
   useEffect(() => showGoalForm);
 
   // const shortenedDate = (goal) => {
